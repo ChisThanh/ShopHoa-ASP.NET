@@ -1,0 +1,402 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D6696136-D8E4-4CF6-B316-4080816A26D1}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ShopHoa</RootNamespace>
+    <AssemblyName>ShopHoa</AssemblyName>
+    <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44335</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.9\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.9\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.9\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.9\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.2.0.1\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.9\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Global.asax" />
+    <Content Include="Web.config" />
+    <Content Include="wwwroot\assets_admin\css\bootstrap.min.css" />
+    <Content Include="wwwroot\assets_admin\css\demo.css" />
+    <Content Include="wwwroot\assets_admin\css\light-bootstrap-dashboard.css" />
+    <Content Include="wwwroot\assets_admin\css\pe-icon-7-stroke.css" />
+    <Content Include="wwwroot\assets_admin\fonts\Pe-icon-7-stroke.svg" />
+    <Content Include="wwwroot\assets_admin\img\blog-2.jpg" />
+    <Content Include="wwwroot\assets_admin\img\blog-3.jpg" />
+    <Content Include="wwwroot\assets_admin\img\blog-4.jpg" />
+    <Content Include="wwwroot\assets_admin\img\blog-5.jpg" />
+    <Content Include="wwwroot\assets_admin\img\carousel_1.jpg" />
+    <Content Include="wwwroot\assets_admin\img\carousel_2.jpg" />
+    <Content Include="wwwroot\assets_admin\img\carousel_3.jpg" />
+    <Content Include="wwwroot\assets_admin\img\default-avatar.png" />
+    <Content Include="wwwroot\assets_admin\img\favicon.ico" />
+    <Content Include="wwwroot\assets_admin\img\flags\AD.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\AE.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\AG.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\AM.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\AR.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\AT.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\AU.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\BE.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\BF.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\BG.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\BO.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\BR.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\CA.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\CD.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\CG.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\CH.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\CL.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\CM.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\CN.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\CO.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\CZ.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\DE.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\DJ.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\DK.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\DZ.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\EE.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\EG.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\ES.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\FI.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\FR.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\GA.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\GB.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\GM.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\GT.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\HN.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\HT.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\HU.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\ID.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\IE.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\IL.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\IN.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\IQ.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\IR.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\IT.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\JM.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\JO.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\JP.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\KG.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\KN.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\KP.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\KR.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\KW.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\KZ.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\LA.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\LB.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\LC.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\LS.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\LU.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\LV.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\MG.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\MK.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\ML.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\MM.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\MT.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\MX.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\NA.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\NE.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\NG.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\NI.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\NL.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\NO.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\OM.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\PA.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\PE.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\PG.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\PK.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\PL.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\PT.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\PY.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\QA.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\RO.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\RU.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\RW.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\SA.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\SE.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\SG.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\SL.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\SN.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\SO.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\SV.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\TD.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\TJ.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\TL.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\TR.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\TZ.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\UA.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\US.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\VE.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\VN.png" />
+    <Content Include="wwwroot\assets_admin\img\flags\YE.png" />
+    <Content Include="wwwroot\assets_admin\img\full-screen-image-1.jpg" />
+    <Content Include="wwwroot\assets_admin\img\full-screen-image-2.jpg" />
+    <Content Include="wwwroot\assets_admin\img\full-screen-image-3.jpg" />
+    <Content Include="wwwroot\assets_admin\img\full-screen-image-4.jpg" />
+    <Content Include="wwwroot\assets_admin\img\loading-bubbles.svg" />
+    <Content Include="wwwroot\assets_admin\img\mask.png" />
+    <Content Include="wwwroot\assets_admin\img\new_logo.png" />
+    <Content Include="wwwroot\assets_admin\js\bootstrap-datetimepicker.min.js" />
+    <Content Include="wwwroot\assets_admin\js\bootstrap-notify.js" />
+    <Content Include="wwwroot\assets_admin\js\bootstrap-selectpicker.js" />
+    <Content Include="wwwroot\assets_admin\js\bootstrap-switch-tags.min.js" />
+    <Content Include="wwwroot\assets_admin\js\bootstrap-table.js" />
+    <Content Include="wwwroot\assets_admin\js\bootstrap.min.js" />
+    <Content Include="wwwroot\assets_admin\js\chartist.min.js" />
+    <Content Include="wwwroot\assets_admin\js\demo.js" />
+    <Content Include="wwwroot\assets_admin\js\fullcalendar.min.js" />
+    <Content Include="wwwroot\assets_admin\js\jquery-jvectormap.js" />
+    <Content Include="wwwroot\assets_admin\js\jquery.bootstrap.wizard.min.js" />
+    <Content Include="wwwroot\assets_admin\js\jquery.datatables.js" />
+    <Content Include="wwwroot\assets_admin\js\jquery.min.js" />
+    <Content Include="wwwroot\assets_admin\js\jquery.validate.min.js" />
+    <Content Include="wwwroot\assets_admin\js\light-bootstrap-dashboard.js" />
+    <Content Include="wwwroot\assets_admin\js\moment.min.js" />
+    <Content Include="wwwroot\assets_admin\js\nouislider.min.js" />
+    <Content Include="wwwroot\assets_admin\js\perfect-scrollbar.jquery.min.js" />
+    <Content Include="wwwroot\assets_admin\js\sweetalert2.js" />
+    <Content Include="wwwroot\assets_customer\css\plugins\animate.min.css" />
+    <Content Include="wwwroot\assets_customer\css\plugins\jquery-ui.min.css" />
+    <Content Include="wwwroot\assets_customer\css\plugins\magnific-popup.css" />
+    <Content Include="wwwroot\assets_customer\css\plugins\nice-select.min.css" />
+    <Content Include="wwwroot\assets_customer\css\plugins\swiper-bundle.min.css" />
+    <Content Include="wwwroot\assets_customer\css\style.css" />
+    <Content Include="wwwroot\assets_customer\css\vendor\bootstrap.min.css" />
+    <Content Include="wwwroot\assets_customer\css\vendor\font.awesome.min.css" />
+    <Content Include="wwwroot\assets_customer\css\vendor\linearicons.min.css" />
+    <Content Include="wwwroot\assets_customer\fonts\fontawesome-webfont3e6e.svg" />
+    <Content Include="wwwroot\assets_customer\fonts\Linearicons-Free.svg" />
+    <Content Include="wwwroot\assets_customer\images\about\1.jpg" />
+    <Content Include="wwwroot\assets_customer\images\about\2.jpg" />
+    <Content Include="wwwroot\assets_customer\images\banner\1-1.jpg" />
+    <Content Include="wwwroot\assets_customer\images\banner\1-2.jpg" />
+    <Content Include="wwwroot\assets_customer\images\banner\1-3.jpg" />
+    <Content Include="wwwroot\assets_customer\images\bg\1.jpg" />
+    <Content Include="wwwroot\assets_customer\images\bg\breadcrumb.jpg" />
+    <Content Include="wwwroot\assets_customer\images\blog\blog1.jpg" />
+    <Content Include="wwwroot\assets_customer\images\blog\blog2.jpg" />
+    <Content Include="wwwroot\assets_customer\images\blog\blog3.jpg" />
+    <Content Include="wwwroot\assets_customer\images\brand\1.png" />
+    <Content Include="wwwroot\assets_customer\images\brand\2.png" />
+    <Content Include="wwwroot\assets_customer\images\brand\3.png" />
+    <Content Include="wwwroot\assets_customer\images\brand\4.png" />
+    <Content Include="wwwroot\assets_customer\images\brand\5.png" />
+    <Content Include="wwwroot\assets_customer\images\cart\1.jpg" />
+    <Content Include="wwwroot\assets_customer\images\cart\2.jpg" />
+    <Content Include="wwwroot\assets_customer\images\cart\3.jpg" />
+    <Content Include="wwwroot\assets_customer\images\category\home1-category-1.jpg" />
+    <Content Include="wwwroot\assets_customer\images\category\home1-category-2.jpg" />
+    <Content Include="wwwroot\assets_customer\images\category\home1-category-3.jpg" />
+    <Content Include="wwwroot\assets_customer\images\category\home1-category-4.jpg" />
+    <Content Include="wwwroot\assets_customer\images\category\home1-category-5.jpg" />
+    <Content Include="wwwroot\assets_customer\images\collection\1-1.jpg" />
+    <Content Include="wwwroot\assets_customer\images\collection\1-2.jpg" />
+    <Content Include="wwwroot\assets_customer\images\favicon.ico" />
+    <Content Include="wwwroot\assets_customer\images\icon\author.png" />
+    <Content Include="wwwroot\assets_customer\images\logo\logo-footer.png" />
+    <Content Include="wwwroot\assets_customer\images\logo\logo.png" />
+    <Content Include="wwwroot\assets_customer\images\payment\payment-icon.png" />
+    <Content Include="wwwroot\assets_customer\images\product\1.jpg" />
+    <Content Include="wwwroot\assets_customer\images\product\2.jpg" />
+    <Content Include="wwwroot\assets_customer\images\product\3.jpg" />
+    <Content Include="wwwroot\assets_customer\images\product\4.jpg" />
+    <Content Include="wwwroot\assets_customer\images\product\5.jpg" />
+    <Content Include="wwwroot\assets_customer\images\product\6.jpg" />
+    <Content Include="wwwroot\assets_customer\images\product\7.jpg" />
+    <Content Include="wwwroot\assets_customer\images\product\8.jpg" />
+    <Content Include="wwwroot\assets_customer\images\product\9.jpg" />
+    <Content Include="wwwroot\assets_customer\images\product\large-size\1.jpg" />
+    <Content Include="wwwroot\assets_customer\images\product\large-size\2.jpg" />
+    <Content Include="wwwroot\assets_customer\images\product\large-size\3.jpg" />
+    <Content Include="wwwroot\assets_customer\images\product\large-size\4.jpg" />
+    <Content Include="wwwroot\assets_customer\images\product\large-size\5.jpg" />
+    <Content Include="wwwroot\assets_customer\images\product\large-size\6.jpg" />
+    <Content Include="wwwroot\assets_customer\images\product\small-size\1.jpg" />
+    <Content Include="wwwroot\assets_customer\images\product\small-size\2.jpg" />
+    <Content Include="wwwroot\assets_customer\images\product\small-size\3.jpg" />
+    <Content Include="wwwroot\assets_customer\images\product\small-size\4.jpg" />
+    <Content Include="wwwroot\assets_customer\images\product\small-size\5.jpg" />
+    <Content Include="wwwroot\assets_customer\images\product\small-size\6.jpg" />
+    <Content Include="wwwroot\assets_customer\images\review\1.jpg" />
+    <Content Include="wwwroot\assets_customer\images\slider\1-1.jpg" />
+    <Content Include="wwwroot\assets_customer\images\slider\1-2.jpg" />
+    <Content Include="wwwroot\assets_customer\images\slider\2-1.jpg" />
+    <Content Include="wwwroot\assets_customer\images\slider\2-2.jpg" />
+    <Content Include="wwwroot\assets_customer\images\slider\3-1.jpg" />
+    <Content Include="wwwroot\assets_customer\images\slider\3-2.jpg" />
+    <Content Include="wwwroot\assets_customer\images\team\1.jpg" />
+    <Content Include="wwwroot\assets_customer\images\team\2.jpg" />
+    <Content Include="wwwroot\assets_customer\images\team\3.jpg" />
+    <Content Include="wwwroot\assets_customer\images\testimonial\testimonial1.jpg" />
+    <Content Include="wwwroot\assets_customer\images\testimonial\testimonial2.jpg" />
+    <Content Include="wwwroot\assets_customer\js\main.js" />
+    <Content Include="wwwroot\assets_customer\js\plugins\jquery-ui.min.js" />
+    <Content Include="wwwroot\assets_customer\js\plugins\jquery.ajaxchimp.min.js" />
+    <Content Include="wwwroot\assets_customer\js\plugins\jquery.countdown.min.js" />
+    <Content Include="wwwroot\assets_customer\js\plugins\jquery.magnific-popup.min.js" />
+    <Content Include="wwwroot\assets_customer\js\plugins\nice-select.min.js" />
+    <Content Include="wwwroot\assets_customer\js\plugins\swiper-bundle.min.js" />
+    <Content Include="wwwroot\assets_customer\js\vendor\bootstrap.bundle.min.js" />
+    <Content Include="wwwroot\assets_customer\js\vendor\jquery-3.6.0.min.js" />
+    <Content Include="wwwroot\assets_customer\js\vendor\jquery-migrate-3.3.2.min.js" />
+    <Content Include="wwwroot\assets_customer\js\vendor\modernizr-3.7.1.min.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\Admin\AdminController.cs" />
+    <Compile Include="Controllers\Customer\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <None Include="packages.config" />
+    <Content Include="Views\Layout_Shares\Admin\Master.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Layout_Shares\Admin\Footer.cshtml" />
+    <Content Include="Views\Layout_Shares\Admin\Header.cshtml" />
+    <Content Include="Views\Layout_Shares\Admin\Sidebar.cshtml" />
+    <Content Include="Views\Layout_Shares\Customer\Master.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Layout_Shares\Customer\Header.cshtml" />
+    <Content Include="Views\Layout_Shares\Customer\Footer.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <Content Include="wwwroot\assets_admin\fonts\Pe-icon-7-stroke.eot" />
+    <Content Include="wwwroot\assets_admin\fonts\Pe-icon-7-stroke.ttf" />
+    <Content Include="wwwroot\assets_admin\fonts\Pe-icon-7-stroke.woff" />
+    <Content Include="wwwroot\assets_customer\fonts\fontawesome-webfont3e6e.eot" />
+    <Content Include="wwwroot\assets_customer\fonts\fontawesome-webfont3e6e.ttf" />
+    <Content Include="wwwroot\assets_customer\fonts\fontawesome-webfont3e6e.woff" />
+    <Content Include="wwwroot\assets_customer\fonts\fontawesome-webfont3e6e.woff2" />
+    <Content Include="wwwroot\assets_customer\fonts\fontawesome-webfontd41d.eot" />
+    <Content Include="wwwroot\assets_customer\fonts\Linearicons-Free.eot" />
+    <Content Include="wwwroot\assets_customer\fonts\Linearicons-Free.ttf" />
+    <Content Include="wwwroot\assets_customer\fonts\Linearicons-Free.woff" />
+    <Content Include="wwwroot\assets_customer\fonts\Linearicons-Free.woff2" />
+    <Content Include="wwwroot\assets_customer\fonts\Linearicons-Freed41d.eot" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>59726</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44335/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
