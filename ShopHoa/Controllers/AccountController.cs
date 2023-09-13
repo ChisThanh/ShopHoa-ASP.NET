@@ -9,7 +9,6 @@ using System.Web;
 using System.Web.Mvc;
 using Microsoft.Owin.Security;
 using ShopHoa.ViewModel;
-using ShopHoa.Identitty;
 using System.Web.Helpers;
 
 namespace ShopHoa.Areas.Admin.Controllers
@@ -26,7 +25,6 @@ namespace ShopHoa.Areas.Admin.Controllers
         public ActionResult Register(RegisterVM rvm)
         {
             var passHash = Crypto.HashPassword(rvm.Password);
-
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser()
@@ -47,8 +45,8 @@ namespace ShopHoa.Areas.Admin.Controllers
                     userManager.AddToRole(user.Id, "Customer");
                     return RedirectToAction("Login");
                 }
-
             }
+            ModelState.AddModelError("Error", "Không tồn tại!!");
             return View();
         }
 

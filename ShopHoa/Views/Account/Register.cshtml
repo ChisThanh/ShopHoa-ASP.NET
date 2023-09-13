@@ -5,6 +5,7 @@
 }
 
 
+
 <div class="breadcrumbs-area position-relative">
     <div class="container">
         <div class="row">
@@ -32,16 +33,17 @@
                         <p class="desc-content">Please Register using account detail bellow.</p>
                     </div>
                     <form action="~/Account/Register" method="post">
+                        @*@ViewData.ModelState["Error"].Errors[0].ErrorMessage*@
                         <div class="single-input-item mb-3">
                             <input type="text" name="Name" placeholder="Name">
                         </div>
                         <div class="single-input-item mb-3">
-                            <input type="email"name="Email" placeholder="Email">
+                            <input type="email" name="Email" placeholder="Email">
                         </div>
                         <div class="single-input-item mb-3">
                             <input type="Password" name="Password" placeholder="Enter your Password">
                         </div>
-                       
+
                         <div class="single-input-item mb-3">
                             <div class="login-reg-form-meta d-flex align-items-center justify-content-between">
                                 <div class="remember-meta mb-3">
