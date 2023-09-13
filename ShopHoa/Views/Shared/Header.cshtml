@@ -14,18 +14,12 @@
                     <nav class="main-nav d-none d-lg-flex">
                         <ul class="nav">
                             <li>
-                                <a class="active" href="index.html">
+                                <a class="active" href="~/">
                                     <span class="menu-text"> Home</span>
-                                    <i class="fa fa-angle-down"></i>
                                 </a>
-                                <ul class="dropdown-submenu dropdown-hover">
-                                    <li><a href="index.html">Home Page - 1</a></li>
-                                    <li><a href="index-2.html">Home Page - 2</a></li>
-                                    <li><a class="active" href="index-3.html">Home Page - 3</a></li>
-                                </ul>
                             </li>
                             <li>
-                                <a class="active" href="~/admin/dashboard">
+                                <a href="~/admin/dashboard">
                                     <span class="menu-text">Admin</span>
                                 </a>
                             </li>
@@ -74,38 +68,34 @@
                                 </a>
                                 <ul class="dropdown-submenu dropdown-hover">
                                     <li><a href="blog.html">Blog Left Sidebar</a></li>
-                                    <li><a href="blog-list-right-sidebar.html">Blog List Right Sidebar</a></li>
-                                    <li><a href="blog-list-fullwidth.html">Blog List Fullwidth</a></li>
-                                    <li><a href="blog-grid.html">Blog Grid Page</a></li>
-                                    <li><a href="blog-grid-right-sidebar.html">Blog Grid Right Sidebar</a></li>
-                                    <li><a href="blog-grid-fullwidth.html">Blog Grid Fullwidth</a></li>
-                                    <li><a href="blog-details-sidebar.html">Blog Details Sidebar</a></li>
-                                    <li><a href="blog-details-fullwidth.html">Blog Details Fullwidth</a></li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="#">
-                                    <span class="menu-text"> Pages</span>
-                                    <i class="fa fa-angle-down"></i>
-                                </a>
-                                <ul class="dropdown-submenu dropdown-hover">
-                                    <li><a href="contact-us.html">Contact</a></li>
-                                    <li><a href="my-account.html">My Account</a></li>
-                                    <li><a href="frequently-questions.html">FAQ</a></li>
-                                    <li><a href="login.html">Login</a></li>
-                                    <li><a href="register.html">Register</a></li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="about-us.html">
-                                    <span class="menu-text"> About Us</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="contact-us.html">
-                                    <span class="menu-text">Contact Us</span>
-                                </a>
-                            </li>
+                            @if (User.Identity.IsAuthenticated)
+                            {
+                                <li>
+                                    <a href="#">
+                                        <span class="menu-text"> @User.Identity.Name</span>
+                                        <i class="fa fa-angle-down"></i>
+                                    </a>
+                                    <ul class="dropdown-submenu dropdown-hover">
+                                        <li><a href="~/Account/Logout">Đăng xuất</a></li>
+                                    </ul>
+                                </li>
+                            }
+                            else
+                            {
+                                <li>
+                                    <a href="~/Account/Login">
+                                        <span class="menu-text">Đăng nhập</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="~/Account/Register">
+                                        <span class="menu-text">Đăng ký</span>
+                                    </a>
+                                </li>
+                            }
+
                         </ul>
                     </nav>
                 </div>

@@ -7,9 +7,11 @@ using ShopHoa.Models;
 
 namespace ShopHoa.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class ProductController : Controller
     {
         // GET: Admin/Product
+
         public ActionResult Index()
         {
             ApplicationDbContext db = new ApplicationDbContext();

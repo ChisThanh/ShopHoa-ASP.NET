@@ -23,13 +23,11 @@ namespace ShopHoa
 
         public void ConfigureAuth(IAppBuilder app)
         {
-            // Cấu hình DbContext và UserManager
+
             app.CreatePerOwinContext(ApplicationDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
-
-            
-
             // ... Cấu hình xác thực và phân quyền
+
             var context = new ApplicationDbContext();
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
@@ -39,18 +37,47 @@ namespace ShopHoa
                 roleManager.Create(role);
             }
 
+            if (!roleManager.RoleExists("Customer"))
+            {
+                var role = new IdentityRole("Customer");
+                roleManager.Create(role);
+            }
 
-            //var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+            var userManager = new UserManager<ApplicationUser>
+                (new UserStore<ApplicationUser>(context));
 
-            //var user = userManager.FindByName("username"); // Thay "username" bằng tên người dùng cụ thể
-            //userManager.AddToRole(user.Id, "Admin");
+            if (userManager.FindByName("admin") == null)
+            {                
+                var user = new ApplicationUser();
+                user.UserName = "admin";
+                user.Email = "admin@gmail.com";
+                string password = "admin123";
+
+                var checkUser = userManager.Create(user, password);
+                if (checkUser.Succeeded)
+                {
+                    userManager.AddToRole(user.Id, "Admin");
+                }
+            }
 
 
-            // Sử dụng Cookie Authentication
+            if (userManager.FindByName("customer") == null)
+            {
+                var user = new ApplicationUser();
+                user.UserName = "c";
+                string password = "admin123";
+
+                var checkUser = userManager.Create(user, password);
+                if (checkUser.Succeeded)
+                {
+                    userManager.AddToRole(user.Id, "Customer");
+                }
+            }
+
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
-                LoginPath = new PathString("/Admin/Account/Login"),
+                LoginPath = new PathString("/Account/Login"),
             });
         }
     }

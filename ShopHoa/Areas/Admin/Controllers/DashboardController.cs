@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace ShopHoa.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class DashboardController : Controller
     {
         // GET: Home
-        [Authorize(Roles = "Admin")]
         public ActionResult Index()
         {
             return View();

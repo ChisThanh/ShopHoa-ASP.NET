@@ -92,12 +92,16 @@
                                 <i class="pe-7s-lock"></i> Lock Screen
                             </a>
                         </li>
-                        <li>
-                            <a href="#" class="text-danger">
-                                <i class="pe-7s-close-circle"></i>
-                                Log out
-                            </a>
-                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li>
+                                <a href="~/Admin/Account/Logout" class="text-danger">
+                                    <i class="pe-7s-close-circle"></i>
+                                    Log out
+                                </a>
+                            </li>
+                        }
+
                     </ul>
                 </li>
 

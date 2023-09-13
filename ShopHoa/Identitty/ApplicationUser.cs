@@ -12,10 +12,7 @@ namespace ShopHoa.Identitty
     {
         public DateTime? BirthDay { get; set; }
         public string IDAddress { get; set; }
-
         public double Salary { get; set; }
-
-
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
