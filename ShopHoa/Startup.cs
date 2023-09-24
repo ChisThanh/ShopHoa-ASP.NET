@@ -6,8 +6,12 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity.EntityFramework;
 using ShopHoa.Identitty;
-
-
+using Microsoft.Owin.Security.Google;
+using Microsoft.Owin.Security;
+using Microsoft.AspNet.Identity.Owin;
+using System.Security.Claims;
+using System.Web.Helpers;
+using Microsoft.Owin.Security.OAuth;
 
 
 [assembly: OwinStartup(typeof(ShopHoa.Startup))]
@@ -20,13 +24,11 @@ namespace ShopHoa
         {
             this.ConfigureAuth(app);
         }
-
         public void ConfigureAuth(IAppBuilder app)
         {
 
             app.CreatePerOwinContext(ApplicationDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
-            // ... Cấu hình xác thực và phân quyền
 
             var context = new ApplicationDbContext();
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
@@ -47,9 +49,9 @@ namespace ShopHoa
                 (new UserStore<ApplicationUser>(context));
 
             if (userManager.FindByName("admin") == null)
-            {                
+            {
                 var user = new ApplicationUser();
-                user.UserName = "admin";
+                user.UserName = "admin@gmail.com";
                 user.Email = "admin@gmail.com";
                 string password = "admin123";
 
@@ -57,20 +59,6 @@ namespace ShopHoa
                 if (checkUser.Succeeded)
                 {
                     userManager.AddToRole(user.Id, "Admin");
-                }
-            }
-
-
-            if (userManager.FindByName("customer") == null)
-            {
-                var user = new ApplicationUser();
-                user.UserName = "c";
-                string password = "admin123";
-
-                var checkUser = userManager.Create(user, password);
-                if (checkUser.Succeeded)
-                {
-                    userManager.AddToRole(user.Id, "Customer");
                 }
             }
 

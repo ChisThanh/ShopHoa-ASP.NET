@@ -31,9 +31,6 @@ $(document).ready(function(){
     window_width = $(window).width();
     $sidebar = $('.sidebar');
 
-    // check if there is an image set for the sidebar's background
-    lbd.checkSidebarImage();
-
     if($('body').hasClass('sidebar-mini')){
         lbd.misc.sidebar_mini_active = true;
     }

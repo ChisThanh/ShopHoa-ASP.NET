@@ -1,90 +1,101 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
 using ShopHoa.Identitty;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Remoting.Contexts;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.Owin.Security;
-using ShopHoa.ViewModel;
 using System.Web.Helpers;
+using FormCollection = System.Web.Mvc.FormCollection;
+using ShopHoa.Helpers;
+using System.Runtime.Remoting.Contexts;
+using ShopHoa.ViewModel;
 
 namespace ShopHoa.Areas.Admin.Controllers
 {
+   
     public class AccountController : Controller
     {
-        // GET: Admin/Account
         [HttpGet]
-        public ActionResult Register()
+        public ActionResult Register(string email = "", string fullname = "",string avatar ="")
         {
+            ViewBag.Email = email;
+            ViewBag.FullName = fullname;
+            ViewBag.Avatar = avatar;
             return View();
         }
         [HttpPost]
-        public ActionResult Register(RegisterVM rvm)
+        public ActionResult Register(RegisterVM vm)
         {
-            var passHash = Crypto.HashPassword(rvm.Password);
-            if (ModelState.IsValid)
+            var passHash = Crypto.HashPassword(vm.Password);
+
+            var user = new ApplicationUser()
             {
-                var user = new ApplicationUser()
-                {
-                    Email = rvm.Email,
-                    UserName = rvm.Name,
-                    PasswordHash = passHash
-                };
+                FullName = vm.FullName,
+                Email = vm.Email,
+                UserName = vm.Email,
+                Avatar = vm.Avatar,
+                PasswordHash = passHash
+            };
 
-                var context = new ApplicationDbContext();
-                var userManager = new UserManager<ApplicationUser>
-                (new UserStore<ApplicationUser>(context));
+            var context = new ApplicationDbContext();
+            var userManager = new UserManager<ApplicationUser>
+            (new UserStore<ApplicationUser>(context));
 
-                IdentityResult identityResult = userManager.Create(user);
+            IdentityResult identityResult = userManager.Create(user);
 
-                if (identityResult.Succeeded)
-                {
-                    userManager.AddToRole(user.Id, "Customer");
-                    return RedirectToAction("Login");
-                }
+            if (identityResult.Succeeded)
+            {
+                userManager.AddToRole(user.Id, "Customer");
+                var authenManager = HttpContext.GetOwinContext().Authentication;
+                var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+                authenManager.SignIn(new AuthenticationProperties(), userIdentity);
+                return RedirectToAction("Index", "Home");
             }
-            ModelState.AddModelError("Error", "Không tồn tại!!");
             return View();
         }
-
         [HttpGet]
-        public ActionResult Login()
+        public ActionResult Login(string email="")
         {
+            ViewBag.Email = email;
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
+
         }
         [HttpPost]
-        public ActionResult Login(string name, string password)
+        public ActionResult Login(string email, string password)
         {
             var context = new ApplicationDbContext();
             var userManager = new UserManager<ApplicationUser>
                (new UserStore<ApplicationUser>(context));
 
-            var user = userManager.Find(name, password);
-            if (user == null)
-                ViewBag.Error = "Không tồn tại tài khoảng và mật khẩu";
-            else
-            {
-                var authenManager = HttpContext.GetOwinContext().Authentication;
-                var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
-                authenManager.SignIn(new AuthenticationProperties(), userIdentity);
+            
+            var user = userManager.Find(email, password);
 
-                if(userManager.IsInRole(user.Id, "Admin"))
-                {
-                    return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
-                }
-                return RedirectToAction("Index", "Home");
+            if (user == null)
+            {
+                ViewBag.ErrorPas = "Tài khoảng hoặc mật khẩu không chính xác!";
+                return View();
             }
-            return View();
+            var authenManager = HttpContext.GetOwinContext().Authentication;
+            var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+            authenManager.SignIn(new AuthenticationProperties(), userIdentity);
+
+
+            if (userManager.IsInRole(user.Id, "Admin"))
+            {
+                return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
+            }
+            return RedirectToAction("Index", "Home");
         }
         public ActionResult Logout()
         {
             var authenManager = HttpContext.GetOwinContext().Authentication;
             authenManager.SignOut();
             return RedirectToAction("Index", "Home", new {area = ""});
-
         }
     }
-}
+}  
+

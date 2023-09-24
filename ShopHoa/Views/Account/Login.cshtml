@@ -4,6 +4,10 @@
     Layout = "~/Views/Shared/Master.cshtml";
 }
 
+
+<!-- Display the user's profile info -->
+<div class="pro-data hidden"></div>
+
 <div class="breadcrumbs-area position-relative">
     <div class="container">
         <div class="row">
@@ -27,21 +31,42 @@
                     <div class="section-content text-center mb-5">
                         <h2 class="title-4 mb-2">Login</h2>
                         <p class="desc-content">Please login using account detail bellow.</p>
+
+                        <script src="https://accounts.google.com/gsi/client" async></script>
+                        <div>
+                            <div id="g_id_onload"
+                                 data-client_id="1080407650334-b7nojqa42d8u8hq1tgcj1lud76ule7gu.apps.googleusercontent.com"
+                                 data-context="signin"
+                                 data-ux_mode="popup"
+                                 data-callback="handleCredentialResponse"
+                                 data-auto_prompt="false">
+                            </div>
+
+                            <div class="g_id_signin"
+                                 data-type="standard"
+                                 data-size="large"
+                                 data-theme="outline"
+                                 data-text="sign_in_with"
+                                 data-shape="rectangular"
+                                 data-logo_alignment="left"
+                                 style="display: flex; justify-content:center;">
+                            </div>
+                        </div>
+
                     </div>
                     <form action="/Account/Login" method="post">
                         <div class="single-input-item mb-3">
-                            <input type="text" name="name" placeholder="Username">
+                            <input type="text" name="email" placeholder="Email" value="@ViewBag.Email">
+                            <p>@ViewBag.ErrorEmail</p>
                         </div>
                         <div class="single-input-item mb-3">
                             <input type="password" name="password" value="admin123" placeholder="Enter your Password">
+                            <p>@ViewBag.ErrorPas</p>
                         </div>
                         <div class="single-input-item mb-3">
                             <div class="login-reg-form-meta d-flex align-items-center justify-content-between">
                                 <div class="remember-meta mb-3">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="rememberMe">
-                                        <label class="custom-control-label" for="rememberMe">Remember Me</label>
-                                    </div>
+
                                 </div>
                                 <a href="#" class="forget-pwd mb-3">Forget Password?</a>
                             </div>
@@ -58,3 +83,46 @@
         </div>
     </div>
 </div>
+
+
+    <script>
+        function handleCredentialResponse(response) {
+            let JWT = JSON.stringify({ request_type: 'user_auth', credential: response.credential });
+            const jsonObj = JSON.parse(JWT);
+            if (jsonObj.request_type === 'user_auth') {
+                const credential = jsonObj.credential || '';
+                const [header, payload, signature] = credential.split('.');
+                const payloadBytes = new Uint8Array(Array.prototype.map.call(atob(payload), (c) => c.charCodeAt(0)));
+                const decoder = new TextDecoder('utf-8');
+                const utf8Payload = decoder.decode(payloadBytes);
+                const responsePayload = JSON.parse(utf8Payload);
+                if (responsePayload) {
+                    const first_name = responsePayload.given_name || '';
+                    const last_name = responsePayload.family_name || '';
+                    const email = responsePayload.email || '';
+                    const picture = responsePayload.picture || '';
+                    const fullname = first_name +" "+ last_name;
+                     $.ajax({
+                        url: '/api/gg',
+                        type: 'post',
+                        data: JSON.stringify(email),
+                        contentType: 'application/json; charset=utf-8',
+                        success: function (data) {
+                            console.log(data);
+                            if (data.success == true) {
+                                window.location.href = `https://localhost:44335/Account/login?email=${email}`;
+                                alert('Tài khoảng đã tồn tại.');
+                            }
+                            else
+                            {
+                                window.location.href = `https://localhost:44335/Account/Register?email=${email}&fullname=${fullname}&avatar=${picture}`;
+                            }
+                        },
+                        error: function () {
+                            alert('Có lỗi xảy ra.');
+                        }
+                    });
+                }
+            }
+        }
+    </script>

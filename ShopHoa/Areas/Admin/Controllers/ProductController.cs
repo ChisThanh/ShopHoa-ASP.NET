@@ -14,7 +14,7 @@ namespace ShopHoa.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
-            ApplicationDbContext db = new ApplicationDbContext();
+            ApplicationDbContextMD db = new ApplicationDbContextMD();
             List<Product> products = db.Products.ToList();
             return View(products);
         }
