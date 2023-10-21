@@ -17,5 +17,6 @@ namespace ShopHoa.Identitty
         {
             return new ApplicationDbContext();
         }
+
     }
 }

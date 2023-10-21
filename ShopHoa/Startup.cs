@@ -33,6 +33,8 @@ namespace ShopHoa
             var context = new ApplicationDbContext();
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
 
+            
+
             if (!roleManager.RoleExists("Admin"))
             {
                 var role = new IdentityRole("Admin");

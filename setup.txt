@@ -1,0 +1,2 @@
+ tool > nuget packet ... > đầu tiên
+ Update-Database -ConfigurationTypeName ShopHoa.IndentityMigration.Configuration

@@ -30,8 +30,7 @@
                 <div class="login-register-wrapper">
                     <div class="section-content text-center mb-5">
                         <h2 class="title-4 mb-2">Login</h2>
-                        <p class="desc-content">Please login using account detail bellow.</p>
-
+                        <p class="desc-content">Đăng nhập với google.</p>
                         <script src="https://accounts.google.com/gsi/client" async></script>
                         <div>
                             <div id="g_id_onload"
@@ -54,14 +53,14 @@
                         </div>
 
                     </div>
+                    <p class="text-danger">@ViewBag.msg</p>
                     <form action="/Account/Login" method="post">
                         <div class="single-input-item mb-3">
                             <input type="text" name="email" placeholder="Email" value="@ViewBag.Email">
-                            <p>@ViewBag.ErrorEmail</p>
                         </div>
                         <div class="single-input-item mb-3">
                             <input type="password" name="password" value="admin123" placeholder="Enter your Password">
-                            <p>@ViewBag.ErrorPas</p>
+                            <p class="text-danger">@ViewBag.Error</p>
                         </div>
                         <div class="single-input-item mb-3">
                             <div class="login-reg-form-meta d-flex align-items-center justify-content-between">
@@ -111,7 +110,6 @@
                             console.log(data);
                             if (data.success == true) {
                                 window.location.href = `https://localhost:44335/Account/login?email=${email}`;
-                                alert('Tài khoảng đã tồn tại.');
                             }
                             else
                             {

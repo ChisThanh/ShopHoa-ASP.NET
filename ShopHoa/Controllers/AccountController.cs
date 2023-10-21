@@ -16,7 +16,7 @@ namespace ShopHoa.Areas.Admin.Controllers
     public class AccountController : Controller
     {
         [HttpGet]
-        public ActionResult Register(string email = "", string fullname = "",string avatar ="")
+        public ActionResult Register(string email = "", string fullname ="",string avatar ="")
         {
             ViewBag.Email = email;
             ViewBag.FullName = fullname;
@@ -57,6 +57,10 @@ namespace ShopHoa.Areas.Admin.Controllers
         public ActionResult Login(string email="")
         {
             ViewBag.Email = email;
+            if (!string.IsNullOrEmpty(email))
+            {
+                ViewBag.msg = "Tài khoản đã tồn tại!";
+            }
             if (User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Index", "Home");
@@ -65,18 +69,18 @@ namespace ShopHoa.Areas.Admin.Controllers
 
         }
         [HttpPost]
-        public ActionResult Login(string email, string password)
+        public ActionResult Login(LoginVM l)
         {
             var context = new ApplicationDbContext();
             var userManager = new UserManager<ApplicationUser>
                (new UserStore<ApplicationUser>(context));
 
             
-            var user = userManager.Find(email, password);
+            var user = userManager.Find(l.Email, l.Password);
 
             if (user == null)
             {
-                ViewBag.ErrorPas = "Tài khoảng hoặc mật khẩu không chính xác!";
+                ViewBag.Error = "Tài khoảng hoặc mật khẩu không chính xác!";
                 return View();
             }
             var authenManager = HttpContext.GetOwinContext().Authentication;
@@ -94,7 +98,7 @@ namespace ShopHoa.Areas.Admin.Controllers
         {
             var authenManager = HttpContext.GetOwinContext().Authentication;
             authenManager.SignOut();
-            return RedirectToAction("Index", "Home", new {area = ""});
+            return RedirectToAction("Login", new {area = ""});
         }
     }
 }  
