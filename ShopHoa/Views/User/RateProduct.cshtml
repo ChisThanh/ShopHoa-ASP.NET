@@ -1,0 +1,94 @@
+﻿@model IEnumerable<ShopHoa.Models.Bill>
+
+@{
+    ViewBag.Title = "RateProduct";
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+
+
+<body style="overflow: visible;">
+    <!-- my account wrapper start -->
+    <div class="my-account-wrapper mt-no-text">
+        <div class="container container-default-2 custom-area">
+            <div class="row">
+                <div class="col-lg-12 col-custom">
+                    <!-- My Account Page Start -->
+                    <div class="myaccount-page-wrapper">
+                        <!-- My Account Tab Menu Start -->
+                        <div class="row">
+
+
+                            <div class="col-lg-12 col-md-8 col-custom">
+                                <div class="tab-content" id="a">
+                                    <div class="myaccount-content">
+                                        <h3>Orders</h3>
+                                        <div class="myaccount-table table-responsive text-center">
+                                            <table class="table table-bordered">
+                                                <thead class="thead-light">
+                                                    <tr>
+                                                        <th>Mã hoa</th>
+                                                        <th>Tiền</th>
+                                                        <th>Số lượng</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @foreach (var item in Model)
+                                                    {
+                                                        <tr>
+                                                            <td>@item.IdFlower</td>
+                                                            <td>@item.IntoMoney</td>
+                                                            <td>@item.Quantity</td>
+                                                        </tr>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <div class="myaccount-content">
+                                        <h3>Account Details</h3>
+                                        <div class="account-details-form">
+                                            <form action="/user/RateProduct" method="POST">
+                                                <input type="hidden" name ="IdBill" value="@Model.First().IdBill">
+                                                <div class="row">
+                                                    <div class="col-lg-6 col-custom">
+                                                        <div class="single-input-item mb-3">
+                                                            <label for="last-name" class="required mb-1">Bình luận</label>
+                                                            <input type="text" name="comment" placeholder=" ">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3 col-custom">
+                                                        <div class="single-input-item mb-3">
+                                                            <label for="last-name" class="required mb-1" style="padding-left: 100px;">Đánh giá sao</label>
+                                                            <div class="rate review_info">
+                                                                <input type="radio" id="star5" name="star" value="5" />
+                                                                <label for="star5" title="text">5 stars</label>
+                                                                <input type="radio" id="star4" name="star" value="4" />
+                                                                <label for="star4" title="text">4 stars</label>
+                                                                <input type="radio" id="star3" name="star" value="3" />
+                                                                <label for="star3" title="text">3 stars</label>
+                                                                <input type="radio" id="star2" name="star" value="2" />
+                                                                <label for="star2" title="text">2 stars</label>
+                                                                <input type="radio" id="star1" name="star" value="1" />
+                                                                <label for="star1" title="text">1 star</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="single-input-item single-item-button">
+                                                    <button type="submit" class="btn flosun-button secondary-btn theme-color  rounded-0">Save Changes</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!-- Kết thúc nội dung đơn -->
+                                </div>
+                            </div>
+
+                        </div> <!-- My Account Tab Content End --></div>
+                </div>
+            </div> <!-- My Account Page End -->
+        </div>
+    </div>
+    <!-- my account wrapper end -->
+    
+</body>

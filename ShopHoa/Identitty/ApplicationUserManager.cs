@@ -2,12 +2,8 @@
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace ShopHoa.Identitty
+using System.Security.Claims;
+namespace ShopHoa.Identity
 {
     public class ApplicationUserManager : UserManager<ApplicationUser>
     {
@@ -15,11 +11,11 @@ namespace ShopHoa.Identitty
             : base(store)
         {
         }
-
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
             var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
             return manager;
         }
+        
     }
 }

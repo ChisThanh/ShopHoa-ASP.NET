@@ -1,13 +1,10 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
-using ShopHoa.Identitty;
+using ShopHoa.Identity;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.Owin.Security;
 using System.Web.Helpers;
-using FormCollection = System.Web.Mvc.FormCollection;
-using ShopHoa.Helpers;
-using System.Runtime.Remoting.Contexts;
 using ShopHoa.ViewModel;
 
 namespace ShopHoa.Areas.Admin.Controllers
@@ -26,6 +23,7 @@ namespace ShopHoa.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Register(RegisterVM vm)
         {
+            
             var passHash = Crypto.HashPassword(vm.Password);
 
             var user = new ApplicationUser()
@@ -49,8 +47,10 @@ namespace ShopHoa.Areas.Admin.Controllers
                 var authenManager = HttpContext.GetOwinContext().Authentication;
                 var userIdentity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
                 authenManager.SignIn(new AuthenticationProperties(), userIdentity);
+
                 return RedirectToAction("Index", "Home");
             }
+
             return View();
         }
         [HttpGet]

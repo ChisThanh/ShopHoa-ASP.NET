@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
-namespace ShopHoa.Identitty
+namespace ShopHoa.Identity
 {
     public class ApplicationUser : IdentityUser
     {
@@ -14,10 +14,8 @@ namespace ShopHoa.Identitty
         public DateTime? BirthDay { get; set; }
         public string IDAddress { get; set; }
         public string Avatar { get; set; }
-        //public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser, string> manager)
-        //{
+        public string Gender { get; set; }
 
-        //}
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser, string> manager)
         {
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);

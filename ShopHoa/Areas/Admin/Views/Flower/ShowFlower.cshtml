@@ -1,0 +1,80 @@
+﻿@model IEnumerable<ShopHoa.Models.Flower>
+
+@{
+    ViewBag.Title = "ShowFlower";
+    Layout = "~/Areas/Admin/Views/Shared/Master.cshtml";
+}
+@{ 
+    var t = 1;
+}
+<h2 class="text-center text-primary">SẢN PHẨM</h2>
+<div style="">
+    <p class="btn btn-primary bg-white">
+        @Html.ActionLink("Create New", "CreateFlower")
+    </p>
+</div>
+
+<div class="content table-responsive table-full-width">
+    <table class="table">
+        <thead>
+            <tr>
+                <th class="text-center">#</th>                  
+                <th>
+                    @Html.DisplayNameFor(model => model.IdFlower)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NameFlower)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Note)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.IdDiscount)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Image)
+                </th>
+
+                <th class="text-right">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-center">@t</td>
+                    <td>@item.IdFlower</td>
+                    <td>@item.IdType</td>
+                    <td>@item.Price</td>
+                    <td>@item.NameFlower</td>
+                    <td>@item.Note</td>
+                    <td>@item.Status</td>
+                    <td>@item.IdDiscount</td>
+                    <td>@item.Image</td>
+                    <td class="td-actions text-right">
+                        <a href="/Admin/Flower/DetailFlower?id=@item.IdFlower" rel="tooltip" title="" class="btn btn-info btn-simple btn-xs" data-original-title="View Profile">
+                            <i class="fa fa-user"></i>
+                        </a>
+                        <a href="/Admin/Flower/EditFlower?id=@item.IdFlower" rel="tooltip" title="" class="btn btn-success btn-simple btn-xs" data-original-title="Edit Profile">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <a href="/Admin/Flower/DeleteFlower?id=@item.IdFlower" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-original-title="Remove">
+                            <i class="fa fa-times"></i>
+                        </a>
+                    </td>
+                </tr>
+                t++;
+            }
+        </tbody>
+    </table>
+</div>
+

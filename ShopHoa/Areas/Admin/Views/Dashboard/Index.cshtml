@@ -1,8 +1,155 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Areas/Admin/Views/Shared/Master.cshtml";
+﻿@{
+ViewBag.Title = "Index";
+Layout = "~/Areas/Admin/Views/Shared/Master.cshtml";
 }
 
 <h2>Đây là giao diện ADMIN</h2>
+<div class="places-sweet-alerts">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="content text-center">
+                    <h5>Doanh thu tổng</h5>
+                    <button class="btn btn-default btn-fill btn-success">@ViewBag.total</button>
+                </div>
+            </div>
+        </div>
 
+        <div class="col-md-3">
+            <div class="card">
+                <div class="content text-center">
+                    <h5>Số đơn</h5>
+                    <button class="btn btn-default btn-fill btn-success">@ViewBag.cart</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card">
+                <div class="content text-center">
+                    <h5>Số khác hàng</h5>
+                    <button class="btn btn-default btn-fill btn-success">@ViewBag.cus</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card">
+                <div class="content text-center">
+                    <h5>Sô sản phẩm </h5>
+                    <button class="btn btn-default btn-fill btn-success">@ViewBag.pro</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="header">
+                <p class="category">Biểu đồ doanh thu</p>
+            </div>
+            <div class="content">
+                <canvas id="myChartBar"></canvas>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="header">
+                <p class="category">Sản phẩm theo loại</p>
+            </div>
+            <div class="content">
+                <canvas id="myChartDoughnut"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+
+    </div>
+</div>
+
+
+
+@section js{
+<script src="~/Areas/Admin/assets/js/chartist.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    $(document).ready(function () {
+        const ctx = document.getElementById('myChartBar');
+        const ctx1 = document.getElementById('myChartDoughnut');
+
+
+        $.ajax({
+            type: "GET",
+            url: "/api/Product/GetMonthlyRevenue",
+            success: function (response) {
+                var labels = response.map(item => 'Tháng ' + String(item.Month));
+                var data = response.map(item => item.TotalRevenue);
+                console.log(data);
+                drawChart(labels, data);
+            }
+        });
+        $.ajax({
+            type: "GET",
+            url: "/api/Product/GetFlowerTypePercentage",
+            success: function (response) {
+                var labels = response.map(item => String(item.FlowerType));
+                var data = response.map(item => String(item.FlowerCount));
+                drawChartDoughnut(labels, data);
+            }
+        });
+
+        function drawChart(labels, data) {
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Tiền',
+                        data: data,
+                        backgroundColor: [
+                            'rgba(75, 192, 192, 0.2)',
+                        ],
+                        borderColor: [
+                            'rgb(75, 192, 192)',
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+        function drawChartDoughnut(labels, data) {
+            new Chart(ctx1, {
+                type: 'doughnut',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Số lượng',
+                        data: data,
+                        backgroundColor: [
+                            'rgb(255, 99, 132)',
+                            'rgb(54, 162, 235)',
+                            'rgb(255, 205, 86)',
+                            'rgb(75, 192, 192)',
+                        ],
+                        hoverOffset: 4
+                    }]
+                },
+            });
+        }
+
+
+    });
+
+</script>
+}

@@ -1,0 +1,11 @@
+﻿@model IEnumerable<ShopHoa.Models.Flower>
+@{
+    var uniqueTypes = Model.Select(flower => flower.Type).Distinct();
+}
+
+<ul class="dropdown-submenu dropdown-hover">
+    @foreach (var type in ViewBag.AllTypes)
+    {
+        <li><a href="Flower/ShowTypeFlower?MaLoai=@type.IdType">@type.NameType</a></li>
+    }
+</ul>

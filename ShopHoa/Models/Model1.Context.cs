@@ -12,6 +12,8 @@ namespace ShopHoa.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class AppDBConnext : DbContext
     {
@@ -25,6 +27,25 @@ namespace ShopHoa.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Address> Addresses { get; set; }
+        public virtual DbSet<Cart> Carts { get; set; }
+        public virtual DbSet<Discount> Discounts { get; set; }
+        public virtual DbSet<Evaluate> Evaluates { get; set; }
+        public virtual DbSet<Flower> Flowers { get; set; }
+        public virtual DbSet<Type> Types { get; set; }
+        public virtual DbSet<Bill> Bills { get; set; }
+        public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
+    
+        [DbFunction("AppDBConnext", "GetMonthlyRevenue")]
+        public virtual IQueryable<GetMonthlyRevenue_Result> GetMonthlyRevenue()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GetMonthlyRevenue_Result>("[AppDBConnext].[GetMonthlyRevenue]()");
+        }
+    
+        [DbFunction("AppDBConnext", "GetFlowerTypePercentage")]
+        public virtual IQueryable<GetFlowerTypePercentage_Result1> GetFlowerTypePercentage()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<GetFlowerTypePercentage_Result1>("[AppDBConnext].[GetFlowerTypePercentage]()");
+        }
     }
 }

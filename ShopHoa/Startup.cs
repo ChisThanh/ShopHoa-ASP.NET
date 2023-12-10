@@ -5,7 +5,7 @@ using Owin;
 using System;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity.EntityFramework;
-using ShopHoa.Identitty;
+using ShopHoa.Identity;
 using Microsoft.Owin.Security.Google;
 using Microsoft.Owin.Security;
 using Microsoft.AspNet.Identity.Owin;

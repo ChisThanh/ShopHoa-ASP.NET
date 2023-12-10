@@ -1,0 +1,81 @@
+﻿@model ShopHoa.Models.Flower
+
+@{
+    ViewBag.Title = "DeleteFlower";
+    Layout = "~/Areas/Admin/Views/Shared/Master.cshtml";
+}
+
+<h2>DeleteFlower</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Flower</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NameFlower)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NameFlower)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Note)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Note)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Discount.IdDiscount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Discount.IdDiscount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type.NameType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type.NameType)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "ShowFlower")
+        </div>
+    }
+</div>

@@ -8,13 +8,15 @@ using System.Threading.Tasks;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Web.Mvc;
-using ShopHoa.Identitty;
+using ShopHoa.Identity;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using System.Web.Helpers;
 using FormCollection = System.Web.Mvc.FormCollection;
 using Microsoft.AspNet.Identity.Owin;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace ShopHoa.Helpers
 {
@@ -47,12 +49,63 @@ namespace ShopHoa.Helpers
                 smtpClient.Send(mailMessage);
                 return Task.FromResult(true);
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 return Task.FromResult(false);
             }
         }
+        public static string FormatNumber(double number)
+        {
+            string formattedNumber = number.ToString("N0");
+            formattedNumber = formattedNumber.Replace(",", ".");
+            return formattedNumber;
+        }
+        public static string GetNextCode(string sw, string currentCode)
+        {
+            if (!currentCode.StartsWith(sw))
+            {
+                throw new ArgumentException("Invalid code format");
+            }
+            string lastNumberString = currentCode.Substring(2);
+            if (int.TryParse(lastNumberString, out int lastNumber))
+            {
+                int nextNumber = lastNumber + 1;
+                string nextNumberString = nextNumber.ToString("D4");
+                string nextCode = sw + nextNumberString;
+                return nextCode;
+            }
+            else
+            {
+                throw new ArgumentException("Invalid number in the code");
+            }
+        }
+        public static string Encrypt(string plainText)
+        {
+            string key = "ThisIsASecretKey123";
+            byte[] keyBytes = Encoding.UTF8.GetBytes(key);
+            byte[] plainBytes = Encoding.UTF8.GetBytes(plainText);
 
+            for (int i = 0; i < plainBytes.Length; i++)
+            {
+                plainBytes[i] = (byte)(plainBytes[i] ^ keyBytes[i % keyBytes.Length]);
+            }
+
+            return Convert.ToBase64String(plainBytes);
+        }
+
+        public static string Decrypt(string cipherText)
+        {
+            string key = "ThisIsASecretKey123";
+            byte[] keyBytes = Encoding.UTF8.GetBytes(key);
+            byte[] cipherBytes = Convert.FromBase64String(cipherText);
+
+            for (int i = 0; i < cipherBytes.Length; i++)
+            {
+                cipherBytes[i] = (byte)(cipherBytes[i] ^ keyBytes[i % keyBytes.Length]);
+            }
+
+            return Encoding.UTF8.GetString(cipherBytes);
+        }
     }
 
 }

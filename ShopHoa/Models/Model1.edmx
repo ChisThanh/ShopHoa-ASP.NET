@@ -4,57 +4,516 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SHOPHOAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'SHOPHOA.dbo.Products' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="Products">
+    <Schema Namespace="SHOPHOAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Address">
           <Key>
-            <PropertyRef Name="product_id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="product_id" Type="int" Nullable="false" />
-          <Property Name="product_name" Type="nvarchar" MaxLength="50" />
-          <Property Name="quantity" Type="int" />
+          <Property Name="Id" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="SpecificAddress" Type="nvarchar" MaxLength="50" />
+          <Property Name="District" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="Ward" Type="nvarchar" MaxLength="50" />
         </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar(max)" />
+          <Property Name="BirthDay" Type="datetime" />
+          <Property Name="IDAddress" Type="nvarchar(max)" />
+          <Property Name="Avatar" Type="nvarchar(max)" />
+          <Property Name="Gender" Type="nvarchar(max)" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Bills">
+          <Key>
+            <PropertyRef Name="IdBill" />
+            <PropertyRef Name="IdFlower" />
+          </Key>
+          <Property Name="IdBill" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="IdFlower" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="IntoMoney" Type="float" />
+          <Property Name="Quantity" Type="float" />
+        </EntityType>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="IdBill" />
+          </Key>
+          <Property Name="IdBill" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="Total" Type="float" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="50" />
+          <Property Name="Address" Type="char" MaxLength="10" />
+          <Property Name="IdClient" Type="nvarchar" MaxLength="128" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date" Type="date" />
+        </EntityType>
+        <EntityType Name="Discount">
+          <Key>
+            <PropertyRef Name="IdDiscount" />
+          </Key>
+          <Property Name="IdDiscount" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="Price" Type="float" />
+          <Property Name="Duration" Type="date" />
+        </EntityType>
+        <EntityType Name="Evaluate">
+          <Key>
+            <PropertyRef Name="IdEvaluate" />
+          </Key>
+          <Property Name="IdEvaluate" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="50" />
+          <Property Name="Star" Type="float" />
+          <Property Name="Imgae" Type="nchar" MaxLength="200" />
+          <Property Name="IdFlower" Type="char" MaxLength="10" />
+          <Property Name="IdClient" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="Flower">
+          <Key>
+            <PropertyRef Name="IdFlower" />
+          </Key>
+          <Property Name="IdFlower" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="IdType" Type="char" MaxLength="10" />
+          <Property Name="Price" Type="float" />
+          <Property Name="NameFlower" Type="nvarchar" MaxLength="50" />
+          <Property Name="Note" Type="nvarchar" MaxLength="50" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdDiscount" Type="char" MaxLength="10" />
+          <Property Name="Image" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Type">
+          <Key>
+            <PropertyRef Name="IdType" />
+          </Key>
+          <Property Name="IdType" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="NameType" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Bills_Cart">
+          <End Role="Cart" Type="Self.Cart" Multiplicity="1" />
+          <End Role="Bills" Type="Self.Bills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cart">
+              <PropertyRef Name="IdBill" />
+            </Principal>
+            <Dependent Role="Bills">
+              <PropertyRef Name="IdBill" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bills_Flower">
+          <End Role="Flower" Type="Self.Flower" Multiplicity="1" />
+          <End Role="Bills" Type="Self.Bills" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flower">
+              <PropertyRef Name="IdFlower" />
+            </Principal>
+            <Dependent Role="Bills">
+              <PropertyRef Name="IdFlower" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Flower_Discount">
+          <End Role="Discount" Type="Self.Discount" Multiplicity="0..1" />
+          <End Role="Flower" Type="Self.Flower" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discount">
+              <PropertyRef Name="IdDiscount" />
+            </Principal>
+            <Dependent Role="Flower">
+              <PropertyRef Name="IdDiscount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Flower_Type">
+          <End Role="Type" Type="Self.Type" Multiplicity="0..1" />
+          <End Role="Flower" Type="Self.Flower" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type">
+              <PropertyRef Name="IdType" />
+            </Principal>
+            <Dependent Role="Flower">
+              <PropertyRef Name="IdType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GetFlowerTypePercentage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="FlowerType" Type="nvarchar" MaxLength="50" />
+                <Property Name="FlowerCount" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="GetMonthlyRevenue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Month" Type="int" />
+                <Property Name="TotalRevenue" Type="float" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="QuantityCart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float" />
+        <Function Name="QuantityCus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float" />
+        <Function Name="QuantityPro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float" />
+        <Function Name="Total" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float" />
         <EntityContainer Name="SHOPHOAModelStoreContainer">
-          <EntitySet Name="Products" EntityType="Self.Products" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Products].[product_id] AS [product_id], 
-    [Products].[product_name] AS [product_name], 
-    [Products].[quantity] AS [quantity]
-    FROM [dbo].[Products] AS [Products]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Bills" EntityType="Self.Bills" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cart" EntityType="Self.Cart" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Discount" EntityType="Self.Discount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Evaluate" EntityType="Self.Evaluate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Flower" EntityType="Self.Flower" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Type" EntityType="Self.Type" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Bills_Cart" Association="Self.FK_Bills_Cart">
+            <End Role="Cart" EntitySet="Cart" />
+            <End Role="Bills" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bills_Flower" Association="Self.FK_Bills_Flower">
+            <End Role="Flower" EntitySet="Flower" />
+            <End Role="Bills" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Flower_Discount" Association="Self.FK_Flower_Discount">
+            <End Role="Discount" EntitySet="Discount" />
+            <End Role="Flower" EntitySet="Flower" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Flower_Type" Association="Self.FK_Flower_Type">
+            <End Role="Type" EntitySet="Type" />
+            <End Role="Flower" EntitySet="Flower" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SHOPHOAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="product_id" />
-          </Key>
-          <Property Name="product_id" Type="Int32" Nullable="false" />
-          <Property Name="product_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="quantity" Type="Int32" />
-        </EntityType>
         <EntityContainer Name="AppDBConnext" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="Addresses" EntityType="SHOPHOAModel.Address" />
+          <EntitySet Name="Carts" EntityType="SHOPHOAModel.Cart" />
+          <EntitySet Name="Discounts" EntityType="SHOPHOAModel.Discount" />
+          <EntitySet Name="Evaluates" EntityType="SHOPHOAModel.Evaluate" />
+          <EntitySet Name="Flowers" EntityType="SHOPHOAModel.Flower" />
+          <EntitySet Name="Types" EntityType="SHOPHOAModel.Type" />
+          <AssociationSet Name="FK_Flower_Discount" Association="SHOPHOAModel.FK_Flower_Discount">
+            <End Role="Discount" EntitySet="Discounts" />
+            <End Role="Flower" EntitySet="Flowers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Flower_Type" Association="SHOPHOAModel.FK_Flower_Type">
+            <End Role="Type" EntitySet="Types" />
+            <End Role="Flower" EntitySet="Flowers" />
+          </AssociationSet>
+          <EntitySet Name="Bills" EntityType="SHOPHOAModel.Bill" />
+          <AssociationSet Name="FK_Bills_Cart" Association="SHOPHOAModel.FK_Bills_Cart">
+            <End Role="Cart" EntitySet="Carts" />
+            <End Role="Bill" EntitySet="Bills" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bills_Flower" Association="SHOPHOAModel.FK_Bills_Flower">
+            <End Role="Flower" EntitySet="Flowers" />
+            <End Role="Bill" EntitySet="Bills" />
+          </AssociationSet>
+          <EntitySet Name="AspNetUsers" EntityType="SHOPHOAModel.AspNetUser" />
+          <FunctionImport Name="GetMonthlyRevenue" IsComposable="true" ReturnType="Collection(SHOPHOAModel.GetMonthlyRevenue_Result)" />
+          <FunctionImport Name="GetFlowerTypePercentage" IsComposable="true" ReturnType="Collection(SHOPHOAModel.GetFlowerTypePercentage_Result1)" />
         </EntityContainer>
-      </Schema>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="SpecificAddress" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ward" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="District" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Cart">
+          <Key>
+            <PropertyRef Name="IdBill" />
+          </Key>
+          <Property Name="IdBill" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Total" Type="Double" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="IdClient" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Bills" Relationship="SHOPHOAModel.FK_Bills_Cart" FromRole="Cart" ToRole="Bill" />
+        </EntityType>
+        <EntityType Name="Discount">
+          <Key>
+            <PropertyRef Name="IdDiscount" />
+          </Key>
+          <Property Name="IdDiscount" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="Duration" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Flowers" Relationship="SHOPHOAModel.FK_Flower_Discount" FromRole="Discount" ToRole="Flower" />
+        </EntityType>
+        <EntityType Name="Evaluate">
+          <Key>
+            <PropertyRef Name="IdEvaluate" />
+          </Key>
+          <Property Name="IdEvaluate" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Comment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Star" Type="Double" />
+          <Property Name="Imgae" Type="String" MaxLength="200" FixedLength="true" Unicode="true" />
+          <Property Name="IdFlower" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="IdClient" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Flower">
+          <Key>
+            <PropertyRef Name="IdFlower" />
+          </Key>
+          <Property Name="IdFlower" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="IdType" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Price" Type="Double" />
+          <Property Name="NameFlower" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Note" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdDiscount" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Discount" Relationship="SHOPHOAModel.FK_Flower_Discount" FromRole="Flower" ToRole="Discount" />
+          <NavigationProperty Name="Type" Relationship="SHOPHOAModel.FK_Flower_Type" FromRole="Flower" ToRole="Type" />
+          <NavigationProperty Name="Bills" Relationship="SHOPHOAModel.FK_Bills_Flower" FromRole="Flower" ToRole="Bill" />
+        </EntityType>
+        <EntityType Name="Type">
+          <Key>
+            <PropertyRef Name="IdType" />
+          </Key>
+          <Property Name="IdType" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="NameType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Flowers" Relationship="SHOPHOAModel.FK_Flower_Type" FromRole="Type" ToRole="Flower" />
+        </EntityType>
+        <Association Name="FK_Flower_Discount">
+          <End Type="SHOPHOAModel.Discount" Role="Discount" Multiplicity="0..1" />
+          <End Type="SHOPHOAModel.Flower" Role="Flower" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Discount">
+              <PropertyRef Name="IdDiscount" />
+            </Principal>
+            <Dependent Role="Flower">
+              <PropertyRef Name="IdDiscount" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Flower_Type">
+          <End Type="SHOPHOAModel.Type" Role="Type" Multiplicity="0..1" />
+          <End Type="SHOPHOAModel.Flower" Role="Flower" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Type">
+              <PropertyRef Name="IdType" />
+            </Principal>
+            <Dependent Role="Flower">
+              <PropertyRef Name="IdType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Bill">
+          <Key>
+            <PropertyRef Name="IdBill" />
+            <PropertyRef Name="IdFlower" />
+          </Key>
+          <Property Name="IdBill" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="IdFlower" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="IntoMoney" Type="Double" />
+          <Property Name="Quantity" Type="Double" />
+          <NavigationProperty Name="Cart" Relationship="SHOPHOAModel.FK_Bills_Cart" FromRole="Bill" ToRole="Cart" />
+          <NavigationProperty Name="Flower" Relationship="SHOPHOAModel.FK_Bills_Flower" FromRole="Bill" ToRole="Flower" />
+        </EntityType>
+        <Association Name="FK_Bills_Cart">
+          <End Type="SHOPHOAModel.Cart" Role="Cart" Multiplicity="1" />
+          <End Type="SHOPHOAModel.Bill" Role="Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cart">
+              <PropertyRef Name="IdBill" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="IdBill" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bills_Flower">
+          <End Type="SHOPHOAModel.Flower" Role="Flower" Multiplicity="1" />
+          <End Type="SHOPHOAModel.Bill" Role="Bill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Flower">
+              <PropertyRef Name="IdFlower" />
+            </Principal>
+            <Dependent Role="Bill">
+              <PropertyRef Name="IdFlower" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AspNetUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="FullName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BirthDay" Type="DateTime" Precision="3" />
+          <Property Name="IDAddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Avatar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <ComplexType Name="GetMonthlyRevenue_Result">
+          <Property Type="Int32" Name="Month" Nullable="true" />
+          <Property Type="Double" Name="TotalRevenue" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="GetFlowerTypePercentage_Result">
+          <Property Type="String" Name="FlowerType" Nullable="true" MaxLength="50" />
+          <Property Type="Decimal" Name="Percentage" Nullable="true" Precision="5" Scale="2" />
+        </ComplexType>
+        <ComplexType Name="GetFlowerTypePercentage_Result1">
+          <Property Type="String" Name="FlowerType" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="FlowerCount" Nullable="true" />
+        </ComplexType>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="SHOPHOAModelStoreContainer" CdmEntityContainer="AppDBConnext">
-          <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="SHOPHOAModel.Product">
-              <MappingFragment StoreEntitySet="Products">
-                <ScalarProperty Name="product_id" ColumnName="product_id" />
-                <ScalarProperty Name="product_name" ColumnName="product_name" />
-                <ScalarProperty Name="quantity" ColumnName="quantity" />
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="SHOPHOAModel.Address">
+              <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="District" ColumnName="District" />
+                <ScalarProperty Name="Ward" ColumnName="Ward" />
+                <ScalarProperty Name="SpecificAddress" ColumnName="SpecificAddress" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Carts">
+            <EntityTypeMapping TypeName="SHOPHOAModel.Cart">
+              <MappingFragment StoreEntitySet="Cart">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="IdBill" ColumnName="IdBill" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Discounts">
+            <EntityTypeMapping TypeName="SHOPHOAModel.Discount">
+              <MappingFragment StoreEntitySet="Discount">
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="IdDiscount" ColumnName="IdDiscount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Evaluates">
+            <EntityTypeMapping TypeName="SHOPHOAModel.Evaluate">
+              <MappingFragment StoreEntitySet="Evaluate">
+                <ScalarProperty Name="IdClient" ColumnName="IdClient" />
+                <ScalarProperty Name="IdFlower" ColumnName="IdFlower" />
+                <ScalarProperty Name="Imgae" ColumnName="Imgae" />
+                <ScalarProperty Name="Star" ColumnName="Star" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="IdEvaluate" ColumnName="IdEvaluate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Flowers">
+            <EntityTypeMapping TypeName="SHOPHOAModel.Flower">
+              <MappingFragment StoreEntitySet="Flower">
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="IdDiscount" ColumnName="IdDiscount" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
+                <ScalarProperty Name="NameFlower" ColumnName="NameFlower" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="IdType" ColumnName="IdType" />
+                <ScalarProperty Name="IdFlower" ColumnName="IdFlower" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Types">
+            <EntityTypeMapping TypeName="SHOPHOAModel.Type">
+              <MappingFragment StoreEntitySet="Type">
+                <ScalarProperty Name="NameType" ColumnName="NameType" />
+                <ScalarProperty Name="IdType" ColumnName="IdType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Bills">
+            <EntityTypeMapping TypeName="SHOPHOAModel.Bill">
+              <MappingFragment StoreEntitySet="Bills">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="IntoMoney" ColumnName="IntoMoney" />
+                <ScalarProperty Name="IdFlower" ColumnName="IdFlower" />
+                <ScalarProperty Name="IdBill" ColumnName="IdBill" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="SHOPHOAModel.AspNetUser">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Avatar" ColumnName="Avatar" />
+                <ScalarProperty Name="IDAddress" ColumnName="IDAddress" />
+                <ScalarProperty Name="BirthDay" ColumnName="BirthDay" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetMonthlyRevenue" FunctionName="SHOPHOAModel.Store.GetMonthlyRevenue">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SHOPHOAModel.GetMonthlyRevenue_Result">
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="TotalRevenue" ColumnName="TotalRevenue" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GetFlowerTypePercentage" FunctionName="SHOPHOAModel.Store.GetFlowerTypePercentage">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SHOPHOAModel.GetFlowerTypePercentage_Result1">
+                <ScalarProperty Name="FlowerType" ColumnName="FlowerType" />
+                <ScalarProperty Name="FlowerCount" ColumnName="FlowerCount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

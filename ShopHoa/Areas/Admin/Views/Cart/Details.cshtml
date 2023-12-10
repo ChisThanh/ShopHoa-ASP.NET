@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ShopHoa.Models.Bill>
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/Master.cshtml";
+}
+
+<h2>Details</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdBill)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdFlower)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IntoMoney)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+        
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdBill)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdFlower)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IntoMoney)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+       
+     
+    </tr>
+}
+
+</table>

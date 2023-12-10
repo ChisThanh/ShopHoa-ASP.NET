@@ -1,0 +1,235 @@
+﻿@model IEnumerable<ShopHoa.Models.Flower>
+@{
+    ViewBag.Title = "LocTheoGia";
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+<!-- Khu vực Breadcrumb bắt đầu ở đây -->
+<div class="breadcrumbs-area position-relative">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="breadcrumb-content position-relative section-content">
+                    <h3 class="title-3">Thanh Bên Cửa Hàng</h3>
+                    <ul>
+                        <li><a href="index.html">Trang Chủ</a></li>
+                        <li>Cửa Hàng</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Khu vực Breadcrumb kết thúc ở đây -->
+<!-- Mua sắm tại khu vực chính Bắt đầu tại đây -->
+<div class="shop-main-area">
+    <div class="container container-default custom-area">
+        <div class="row flex-row-reverse">
+            <div class="col-lg-9 col-12 col-custom widget-mt">
+                <!--bắt đầu thanh công cụ cửa hàng-->
+                <div class="shop_toolbar_wrapper mb-30">
+                    <div class="shop_toolbar_btn">
+                        <button data-role="grid_3" type="button" class="active btn-grid-3" title="Grid">
+                            <i class="fa fa-th"></i>
+                        </button>
+
+                    </div>
+                    <div class="shop-select">
+                        <form class="d-flex flex-column w-100" action="#">
+                            <div class="form-group">
+                                <select class="form-control nice-select w-100" onchange="sortFlower(this.value);">
+                                    <option selected value="SortByNameFlower">Theo thứ tự bảng chữ cái, A-Z</option>
+                                    <option value="SortByNamePriceAZ">Sắp xếp theo giá: thấp đến cao</option>
+                                    <option value="SortByNamePriceZA">Sắp xếp theo giá: cao xuống thấp</option>
+                                </select>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!--cuối thanh công cụ cửa hàng-->
+                <!-- Bắt đầu kết thúc cửa hàng -->
+                <div class="row shop_wrapper grid_3">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-md-6 col-sm-6 col-lg-4 col-custom product-area">
+                            <div class="product-item">
+                                <div class="single-product position-relative mr-0 ml-0">
+                                    <div class="product-image">
+                                        <a class="d-block" href="/Flower/ShowDetailFlower?id=@item.IdFlower">
+                                            <img src="/assets/images/product/@item.Image" alt="" class="product-image-1 w-100">
+                                            <img src="/assets/images/product/2.jpg" alt=""
+                                                 class="product-image-2 position-absolute w-100">
+                                        </a>
+                                        <span class="onsale">Doanh thu!</span>
+                                        <div class="add-action d-flex flex-column position-absolute">
+                                            <a href="compare.html" title="Compare">
+                                                <i class="lnr lnr-sync" data-toggle="tooltip" data-placement="left"
+                                                   title="Compare"></i>
+                                            </a>
+                                            <a href="wishlist.html" title="Add To Wishlist">
+                                                <i class="lnr lnr-heart" data-toggle="tooltip" data-placement="left"
+                                                   title="Wishlist"></i>
+                                            </a>
+                                            <a href="#exampleModalCenter" title="Quick View" data-bs-toggle="modal"
+                                               data-bs-target="#exampleModalCenter">
+                                                <i class="lnr lnr-eye" data-toggle="tooltip" data-placement="left"
+                                                   title="Quick View"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="product-content">
+                                        <div class="product-title">
+                                            <h4 class="title-2">
+                                                <a href="product-details.html">@item.NameFlower</a>
+                                            </h4>
+                                        </div>
+                                        <div class="product-rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        </div>
+                                        <div class="price-box">
+                                            <span class="regular-price ">@String.Format("{0:0,00}", @item.Price)</span>
+                                            <span class="old-price"><del>$70.00</del></span>
+                                        </div>
+                                        <a href="cart.html" class="btn product-cart">Thêm vào giỏ hàng</a>
+                                    </div>
+                                    <div class="product-content-listview">
+                                        <div class="product-title">
+                                            <h4 class="title-2">
+                                                <a href="product-details.html">@item.NameFlower</a>
+                                            </h4>
+                                        </div>
+                                        <div class="product-rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        </div>
+                                        <div class="price-box">
+                                            <span class="regular-price ">$60.00</span>
+                                            <span class="old-price"><del>$70.00</del></span>
+                                        </div>
+                                        <p class="desc-content">
+                                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                            Fusce posuere metus vitae arcu imperdiet, id aliquet ante scelerisque. Sed
+                                            sit amet sem vitae urna fringilla tempus.
+                                        </p>
+                                        <div class="button-listview">
+                                            <a href="cart.html"
+                                               class="btn product-cart button-icon flosun-button dark-btn"
+                                               data-toggle="tooltip" data-placement="top" title="Add to Cart">
+                                                <span>Add to Cart</span>
+                                            </a>
+                                            <a class="list-icon" href="compare.html" title="Compare">
+                                                <i class="lnr lnr-sync" data-toggle="tooltip" data-placement="top"
+                                                   title="Compare"></i>
+                                            </a>
+                                            <a class="list-icon" href="wishlist.html" title="Add To Wishlist">
+                                                <i class="lnr lnr-heart" data-toggle="tooltip" data-placement="top"
+                                                   title="Wishlist"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+                <!-- Kết thúc gói cửa hàng -->
+                <!-- Bắt đầu thanh công cụ dưới cùng -->
+                <div class="row">
+                    <div class="col-sm-12 col-custom">
+                        <div class="toolbar-bottom">
+                            <div class="pagination">
+                                <ul>
+                                    <li class="current">1</li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">&gt;&gt;</a></li>
+                                </ul>
+                            </div>
+                            <p class="desc-content text-center text-sm-right mb-0">
+                                Hiển thị 1 - 12 trên 34 kết quả
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Cuối thanh công cụ phía dưới -->
+            </div>
+            <div class="col-lg-3 col-12 col-custom">
+                <!-- Bắt đầu tiện ích thanh bên -->
+                <aside class="sidebar_widget widget-mt">
+                    <div class="widget_inner">
+                        <div class="widget-list widget-mb-1">
+                            <h3 class="widget-title">Tìm kiếm</h3>
+                            <div class="search-box">
+                                <form action="/Flower/TimKiemTheoTen" class="input-group">
+                                    <input name="TenSP" type="text" class="form-control text-center" placeholder="Search Our Store" aria-label="Search Our Store">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-outline-secondary" type="submit">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="widget-list widget-mb-1">
+                            <h3 class="widget-title">Danh Mục Thực Đơn</h3>
+                            <!-- Bắt đầu menu tiện ích -->
+                            <nav>
+
+                                <ul class="mobile-menu p-0 m-0">
+                                    @Html.Action("DanhMucThucDon", "Type")
+                                </ul>
+                            </nav>
+                            <!-- Kết thúc menu tiện ích -->
+                        </div>
+                        <div class="widget-list widget-mb-1">
+                            <h3 class="widget-title">Bộ Lọc Giá</h3>
+                            <!-- Bắt đầu menu tiện ích -->
+                            <form action="#">
+                                <div id="slider-range"></div>
+                                <button type="submit">Lọc</button>
+                                <input type="text" name="text" id="amount" />
+                            </form>
+                            <!-- Kết thúc menu tiện ích -->
+                        </div>
+                        <div class="widget-list widget-mb-3">
+                            <h3 class="widget-title">Thẻ</h3>
+                            <div class="sidebar-body">
+                                <ul class="tags">
+                                    @foreach (var item in Model.Take(5))
+                                    {
+                                        <li><a href="/Flower/ShowDetailFlower?id=@item.IdFlower">@item.NameFlower</a></li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </aside>
+                <!-- Kết thúc tiện ích thanh bên -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Khu vực mua sắm chính kết thúc ở đây -->
+<!-- Main JS -->
+<script>
+    function sortFlower(sortOption) {
+        $.ajax({
+            url: '/Flower/' + sortOption,
+            type: 'GET',
+            success: function (data) {
+                // Cập nhật nội dung trang với dữ liệu mới từ yêu cầu Ajax
+                $('.shop_wrapper').html(data);
+            },
+            error: function () {
+                alert('Đã xảy ra lỗi khi tải dữ liệu.');
+            }
+        });
+    }
+</script>

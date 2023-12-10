@@ -1,0 +1,76 @@
+﻿@model IEnumerable<ShopHoa.Models.Client>
+
+@{
+    ViewBag.Title = "DSKhachHang";
+    Layout = "~/Areas/Admin/Views/Shared/Master.cshtml";
+}
+
+<h2>DSKhachHang</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Createt")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdClient)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NameClient)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GioiTinh)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Password)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdClient)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NameClient)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GioiTinh)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Image)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Password)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.IdClient }) |
+            @Html.ActionLink("Details", "Details", new { id = item.IdClient }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.IdClient })
+        </td>
+    </tr>
+}
+
+</table>

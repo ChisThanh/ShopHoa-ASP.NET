@@ -1,11 +1,4 @@
 ﻿<div class="sidebar" data-color="purple" >
-    <!--
-
-        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-        Tip 2: you can also add an image using data-image tag
-
-    -->
-
     <div class="logo">
         <a href="~/" class="simple-text logo-mini">
             SH
@@ -58,7 +51,7 @@
 
         <ul class="nav">
             <li class="active">
-                <a href="dashboard.html">
+                <a href="/admin">
                     <i class="pe-7s-graph"></i>
                     <p>Dashboard</p>
                 </a>
@@ -74,15 +67,72 @@
                 <div class="collapse" id="product">
                     <ul class="nav">
                         <li>
-                            <a href="~/Admin/Product">
+                            <a href="~/Admin/Flower">
                                 <span class="sidebar-mini">DS</span>
-                                <span class="sidebar-normal">Danh sách sản phẩm</span>
+                                <span class="sidebar-normal">Danh sách hoa</span>
                             </a>
                         </li>
                         <li>
-                            <a href="~/Admin/Product/Create">
+                            <a href="~/Admin/Flower/CreateFlower">
                                 <span class="sidebar-mini">TS</span>
-                                <span class="sidebar-normal">Thêm sản phẩm</span>
+                                <span class="sidebar-normal">Thêm hoa</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a data-toggle="collapse" href="#customer">
+                    <i class="pe-7s-plugin"></i>
+                    <p>
+                        Khách hàng
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="customer">
+                    <ul class="nav">
+                        <li>
+                            <a href="~/Admin/KhachHang">
+                                <span class="sidebar-mini">DS</span>
+                                <span class="sidebar-normal">Danh sách khách hàng</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a data-toggle="collapse" href="#cart">
+                    <i class="pe-7s-plugin"></i>
+                    <p>
+                        Đơn hàng
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="cart">
+                    <ul class="nav">
+                        <li>
+                            <a href="~/Admin/Cart">
+                                <span class="sidebar-mini">DS</span>
+                                <span class="sidebar-normal">Danh sách đơn</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a data-toggle="collapse" href="#evaluate">
+                    <i class="pe-7s-plugin"></i>
+                    <p>
+                        Đánh giá
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="evaluate">
+                    <ul class="nav">
+                        <li>
+                            <a href="~/Admin/evaluate">
+                                <span class="sidebar-mini">DS</span>
+                                <span class="sidebar-normal">Danh sách</span>
                             </a>
                         </li>
                     </ul>

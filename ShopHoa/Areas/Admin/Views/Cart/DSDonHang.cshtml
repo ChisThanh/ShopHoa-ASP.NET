@@ -1,0 +1,145 @@
+﻿@model IEnumerable<ShopHoa.Models.Cart>
+
+@{
+    ViewBag.Title = "DSDonHang";
+    Layout = "~/Areas/Admin/Views/Shared/Master.cshtml";
+}
+@{
+    var t = 1;
+}
+<h2 class="text-center text-primary">DANH SÁCH ĐƠN HÀNG</h2>
+<div style="">
+    <p class="btn btn-primary bg-white">
+        @Html.ActionLink("Create New", "Create")
+    </p>
+</div>
+<table class="table">
+    <tr>
+        <th class="">#</th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdBill)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdClient)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@t</td>
+            <td>
+                @item.IdBill
+            </td>
+            <td>
+                @item.Total
+            </td>
+            <td>
+                @item.PhoneNumber
+            </td>
+            <td>
+                @item.Address
+            </td>
+            <td>
+                @item.IdClient
+            </td>
+            <td>
+                <select class="status" data-id="@item.IdBill">
+                    <option value="DG" @if (item.Status == "DG") { @("selected") }>Đánh giá</option>
+                    <option value="TC" @if (item.Status == "TC") { @("selected") }>Thành công</option>
+                    <option value="DGH" @if (item.Status == "DGH") { @("selected") }>Đang giao hàng</option>
+                    <option value="HD" @if (item.Status == "HD") { @("selected") }>Đã hũy</option>
+                </select>
+            </td>
+            <td>
+                @item.Name
+            </td>
+            <td>
+                @item.Date
+            </td>
+            <td class="td-actions text-right">
+                <a href="/Admin/Cart/Details?id=@item.IdBill" rel="tooltip" title="" class="btn btn-info btn-simple btn-xs" data-original-title="View Profile">
+                    <i class="fa fa-user"></i>
+                </a>
+                <a href="/Admin/Cart/Edit?id=@item.IdBill" rel="tooltip" title="" class="btn btn-success btn-simple btn-xs" data-original-title="Edit Profile">
+                    <i class="fa fa-edit"></i>
+                </a>
+                <a href="/Admin/Cart/Delete?id=@item.IdBill" rel="tooltip" title="" class="btn btn-danger btn-simple btn-xs" data-original-title="Remove">
+                    <i class="fa fa-times"></i>
+                </a>
+            </td>
+        </tr>
+        t++;
+    }
+
+</table>
+
+@section js{
+    <script src="~/Areas/Admin/assets/js/sweetalert2.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $(".status").on("change", function () {
+                var id = $(this).data('id');
+                var v = $(this).val();
+                console.log(id, v);
+                swal({
+                    title: 'Bạn có muốn thay đổi',
+                    text: "Thay đổi trình trạng đơn hàng",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonClass: 'btn btn-info btn-fill',
+                    cancelButtonClass: 'btn btn-danger btn-fill',
+                    confirmButtonText: 'Yes',
+                    buttonsStyling: false
+                }).then(function () {
+                    $.ajax({
+                        type: "GET",
+                        url: `/api/cart/changeStatus?id=${id}&status=${v}`,
+                        success: function (response) {
+                            swal({
+                                title: 'Thay đổi thành công!',
+                                text: 'Bạn đã thay đổi trình trạng đơn hàng',
+                                type: 'success',
+                                confirmButtonClass: "btn btn-info btn-fill",
+                                buttonsStyling: false
+                            });
+                        },
+                        error: function (response) {
+                            swal({
+                                title: 'Thay đổi không thành công!',
+                                text: 'Bạn đã thay đổi trình trạng đơn hàng',
+                                type: 'danger',
+                                confirmButtonClass: "btn btn-danger btn-fill",
+                                buttonsStyling: false
+                            });
+                        }
+                    });
+                   
+                }).catch(swal.noop)
+             
+            });
+           
+        });
+
+    </script>
+}

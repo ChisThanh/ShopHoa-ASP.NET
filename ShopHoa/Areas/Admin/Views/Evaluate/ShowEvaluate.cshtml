@@ -1,0 +1,63 @@
+﻿@model IEnumerable<ShopHoa.Models.Evaluate>
+
+@{
+    ViewBag.Title = "ShowEvaluate";
+    Layout = "~/Areas/Admin/Views/Shared/Master.cshtml";
+}
+
+<h2>Danh sách đánh giá</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.IdEvaluate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdClient)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Star)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.Imgae)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IdFlower)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdEvaluate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdClient)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Star)
+        </td>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.Imgae)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IdFlower)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "EditEvaluate", new { id=item.IdEvaluate }) |
+            @Html.ActionLink("Details", "DetailEvaluate", new { id = item.IdEvaluate }) |
+            @Html.ActionLink("Delete", "DeleteEvaluate", new { id = item.IdEvaluate })
+        </td>
+    </tr>
+}
+
+</table>

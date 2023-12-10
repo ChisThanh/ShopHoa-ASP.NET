@@ -1,0 +1,8 @@
+﻿@model List<ShopHoa.Models.Type>
+
+<ul class="dropdown-submenu dropdown-hover">
+    @foreach (var type in Model)
+    {
+        <li><a href="/Flower/ShowTypeFlower?MaLoai=@type.IdType">@type.NameType</a></li>
+    }
+</ul>

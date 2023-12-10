@@ -1,11 +1,11 @@
-﻿namespace ShopHoa.IndentityMigration
+﻿namespace ShopHoa.IdentityMigration
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ShopHoa.Identitty.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ShopHoa.Identity.ApplicationDbContext>
     {
         public Configuration()
         {
@@ -13,7 +13,7 @@
             MigrationsDirectory = @"IndentityMigration";
         }
 
-        protected override void Seed(ShopHoa.Identitty.ApplicationDbContext context)
+        protected override void Seed(ShopHoa.Identity.ApplicationDbContext context)
         {
             //  This method will be called after migrating to the latest version.
 

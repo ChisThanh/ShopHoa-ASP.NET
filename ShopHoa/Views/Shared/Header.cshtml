@@ -1,12 +1,13 @@
-﻿<header class="main-header-area">
-    <!-- Main Header Area Start -->
-    <div class="main-header header-transparent header-sticky">
-        <div class="container-fluid">
+﻿
+<header class="main-header-area">
+    <!-- Khu vực tiêu đề chính Bắt đầu-->
+    <div class="main-header header-sticky">
+        <div class="container custom-area">
             <div class="row align-items-center">
                 <div class="col-lg-2 col-xl-2 col-md-6 col-6 col-custom">
                     <div class="header-logo d-flex align-items-center">
                         <a href="/">
-                            <img class="img-full" src="~/assets/images/logo/logo.png" alt="Header Logo">
+                            <img class="img-full" src="/assets/images/logo/logo.png" alt="Header Logo">
                         </a>
                     </div>
                 </div>
@@ -14,87 +15,70 @@
                     <nav class="main-nav d-none d-lg-flex">
                         <ul class="nav">
                             <li>
-                                <a class="active" href="~/">
-                                    <span class="menu-text"> Trang chủ</span>
+                                <a href="/">
+                                    <span class="menu-text">Trang Chủ</span>
+
                                 </a>
+
                             </li>
                             <li>
-                                <a href="~/admin/dashboard">
-                                    <span class="menu-text">Admin</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="shop.html">
-                                    <span class="menu-text">Sản phẩm </span>
+                                <a class="active" href="/Flower/ShowListFlower">
+                                    <span class="menu-text">Sản phẩm</span>
                                     <i class="fa fa-angle-down"></i>
                                 </a>
-                                <div class="mega-menu dropdown-hover">
-                                    <div class="menu-colum">
-                                        <ul>
-                                            <li><span class="mega-menu-text">Hoa</span></li>
-                                            <li><a href="shop.html">Hoa Cưới</a></li>
-                                            <li><a href="shop-right-sidebar.html">Hoa Sinh Nhật </a></li>
-                                            <li><a href="shop-list-left.html">Hoa Giáng Sinh</a></li>
-                                            <li><a href="shop-list-right.html">Hoa Khai Trương</a></li>
-                                            <li><a href="shop-fullwidth.html">Hoa Tốt Nghiệp</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="menu-colum">
-                                        <ul>
-                                            <li><span class="mega-menu-text">Thiết Kế</span></li>
-                                            <li><a href="product-details.html">Bó Hoa</a></li>
-                                            <li><a href="variable-product-details.html">Lãng Hoa</a></li>
-                                            <li><a href="external-product-details.html">Giỏ Hoa</a></li>
-                                            <li><a href="gallery-product-details.html">Bình Hoa</a></li>
-                                            <li><a href="countdown-product-details.html">Kệ Hoa</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="menu-colum">
-                                        <ul>
-                                            <li><span class="mega-menu-text">Khác</span></li>
-                                            <li><a href="error-404.html">Hoa Hồng</a></li>
-                                            <li><a href="compare.html">Hoa Tulip</a></li>
-                                            <li><a href="cart.html">Hoa Baby</a></li>
-                                            <li><a href="checkout.html">Hoa Linh Lan</a></li>
-                                            <li><a href="wishlist.html">Hoa Khác</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
+
+                                @Html.Action("TypeFlowerMenu", "Home")
+
                             </li>
                             <li>
                                 <a href="blog-details-fullwidth.html">
-                                    <span class="menu-text"> Liên Hệ</span>
+                                    <span class="menu-text">Blog</span>
                                     <i class="fa fa-angle-down"></i>
                                 </a>
                                 <ul class="dropdown-submenu dropdown-hover">
-                                    <li><a href="blog.html">Blog Left Sidebar</a></li>
+                                    <li><a href="blog.html">Thanh Bên Trái Của Blog</a></li>
+                                    <li>
+                                        <a href="blog-list-right-sidebar.html">Danh Sách Blog Thanh Bên Phải</a>
+                                    </li>
+                                    <li><a href="blog-list-fullwidth.html">Danh Sách Blog Toàn Chiều Rộng</a></li>
+                                    <li><a href="blog-grid.html">Trang Lưới Blog</a></li>
+                                    <li><a href="blog-grid-right-sidebar.html">Lưới Blog Thanh Bên Phải</a></li>
+                                    <li><a href="blog-grid-fullwidth.html">Toàn Bộ Chiều Rộng Lưới Blog</a></li>
+                                    <li><a href="blog-details-sidebar.html">Chi Tiết Blog Trang Thanh Bên</a></li>
+                                    <li>
+                                        <a href="blog-details-fullwidth.html">
+                                            Chi Tiết Blog Trang Toàn Chiều
+                                            Rộng
+                                        </a>
+                                    </li>
                                 </ul>
                             </li>
-                            @if (User.Identity.IsAuthenticated)
-                            {
-                                <li>
-                                    <a href="#">
-                                        <span class="menu-text"> @User.Identity.Name</span>
-                                        <i class="fa fa-angle-down"></i>
-                                    </a>
-                                    <ul class="dropdown-submenu dropdown-hover">
+                            <li>
+                                <a href="#">
+                                    <span class="menu-text"> Trang</span>
+                                    <i class="fa fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-submenu dropdown-hover">
+                                  
+
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        <li><a href="/User/ShowTTUser">Tài Khoản Của Tôi</a></li>
                                         <li><a href="~/Account/Logout">Đăng xuất</a></li>
-                                    </ul>
-                                </li>
-                            }
-                            else
-                            {
-                                <li>
-                                    <a href="~/Account/Login">
-                                        <span class="menu-text">Đăng nhập</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="~/Account/Register">
-                                        <span class="menu-text">Đăng ký</span>
-                                    </a>
-                                </li>
-                            }
+
+                                    }
+                                    else
+                                    {
+                                        <li><a href="/account/login">Đăng Nhập</a></li>
+                                        <li><a href="/account/register">Đăng Ký</a></li>
+                                    }
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="about-us.html">
+                                    <span class="menu-text">Về Chúng Tôi</span>
+                                </a>
+                            </li>
 
                         </ul>
                     </nav>
@@ -103,65 +87,21 @@
                     <div class="header-right-area main-nav">
                         <ul class="nav">
                             <li class="minicart-wrap">
-                                <a href="#" class="minicart-btn toolbar-btn">
+                                <a href="~/Cart" class="minicart-btn toolbar-btn">
                                     <i class="fa fa-shopping-cart"></i>
-                                    <span class="cart-item_count">3</span>
+                                    <span class="cart-item_count">0</span>
                                 </a>
                                 <div class="cart-item-wrapper dropdown-sidemenu dropdown-hover-2">
-                                    <div class="single-cart-item">
-                                        <div class="cart-img">
-                                            <a href="cart.html"><img src="~/assets/images/cart/1.jpg" alt=""></a>
-                                        </div>
-                                        <div class="cart-text">
-                                            <h5 class="title"><a href="cart.html">Odio tortor consequat</a></h5>
-                                            <div class="cart-text-btn">
-                                                <div class="cart-qty">
-                                                    <span>1×</span>
-                                                    <span class="cart-price">$98.00</span>
-                                                </div>
-                                                <button type="button"><i class="ion-trash-b"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="single-cart-item">
-                                        <div class="cart-img">
-                                            <a href="cart.html"><img src="~/assets/images/cart/2.jpg" alt=""></a>
-                                        </div>
-                                        <div class="cart-text">
-                                            <h5 class="title"><a href="cart.html">Integer eget augue</a></h5>
-                                            <div class="cart-text-btn">
-                                                <div class="cart-qty">
-                                                    <span>1×</span>
-                                                    <span class="cart-price">$98.00</span>
-                                                </div>
-                                                <button type="button"><i class="ion-trash-b"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="single-cart-item">
-                                        <div class="cart-img">
-                                            <a href="cart.html"><img src="~/assets/images/cart/3.jpg" alt=""></a>
-                                        </div>
-                                        <div class="cart-text">
-                                            <h5 class="title"><a href="cart.html">Eleifend quam</a></h5>
-                                            <div class="cart-text-btn">
-                                                <div class="cart-qty">
-                                                    <span>1×</span>
-                                                    <span class="cart-price">$98.00</span>
-                                                </div>
-                                                <button type="button"><i class="ion-trash-b"></i></button>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <div id="miniCart"></div>
                                     <div class="cart-price-total d-flex justify-content-between">
                                         <h5>Total :</h5>
-                                        <h5>$166.00</h5>
+                                        <h5 id="txtTotal">$0</h5>
                                     </div>
                                     <div class="cart-links d-flex justify-content-between">
                                         <a class="btn product-cart button-icon flosun-button dark-btn"
-                                           href="cart.html">Xem Giỏ Hàng</a>
+                                           href="~/Cart">Giỏ Hàng</a>
                                         <a class="btn flosun-button secondary-btn rounded-0"
-                                           href="checkout.html">Thanh Toán</a>
+                                           href="~/Cart/Checkout">Đặt hàng</a>
                                     </div>
                                 </div>
                             </li>
@@ -169,8 +109,8 @@
                                 <a href="#"><i class="fa fa-search"></i> </a>
                                 <ul class="dropdown-sidemenu dropdown-hover-2 dropdown-search">
                                     <li>
-                                        <form action="#">
-                                            <input name="search" id="search" placeholder="Search" type="text">
+                                        <form action="/Flower/TimKiemTheoTen">
+                                            <input name="TenSP" id="search" placeholder="Search" type="text">
                                             <button type="submit"><i class="fa fa-search"></i></button>
                                         </form>
                                     </li>
@@ -191,245 +131,259 @@
                 </div>
             </div>
         </div>
-    </div>
-    <!-- Main Header Area End -->
-    <!-- off-canvas menu start -->
-    <aside class="off-canvas-wrapper" id="mobileMenu">
-        <div class="off-canvas-overlay"></div>
-        <div class="off-canvas-inner-content">
-            <div class="btn-close-off-canvas">
-                <i class="fa fa-times"></i>
-            </div>
-            <div class="off-canvas-inner">
-                <div class="search-box-offcanvas">
-                    <form>
-                        <input type="text" placeholder="Search product...">
-                        <button class="search-btn"><i class="fa fa-search"></i></button>
-                    </form>
-                </div>
-                <!-- mobile menu start -->
-                <div class="mobile-navigation">
-                    <!-- mobile menu navigation start -->
-                    <nav>
-                        <ul class="mobile-menu">
-                            <li class="menu-item-has-children">
-                                <a href="#">Home</a>
-                                <ul class="dropdown">
-                                    <li><a href="index.html">Home Page 1</a></li>
-                                    <li><a href="index-2.html">Home Page 2</a></li>
-                                    <li><a href="index-3.html">Home Page 3</a></li>
-                                    <li><a href="index-4.html">Home Page 4</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="#">Shop</a>
-                                <ul class="megamenu dropdown">
-                                    <li class="mega-title has-children">
-                                        <a href="#">Shop Layouts</a>
-                                        <ul class="dropdown">
-                                            <li><a href="shop.html">Shop Left Sidebar</a></li>
-                                            <li><a href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
-                                            <li><a href="shop-list-left.html">Shop List Left Sidebar</a></li>
-                                            <li><a href="shop-list-right.html">Shop List Right Sidebar</a></li>
-                                            <li><a href="shop-fullwidth.html">Shop Full Width</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="mega-title has-children">
-                                        <a href="#">Product Details</a>
-                                        <ul class="dropdown">
-                                            <li><a href="product-details.html">Single Product Details</a></li>
-                                            <li>
-                                                <a href="variable-product-details.html">Variable Product Details</a>
-                                            </li>
-                                            <li>
-                                                <a href="external-product-details.html">External Product Details</a>
-                                            </li>
-                                            <li>
-                                                <a href="gallery-product-details.html">Gallery Product Details</a>
-                                            </li>
-                                            <li>
-                                                <a href="countdown-product-details.html">
-                                                    Countdown Product
-                                                    Details
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                    <li class="mega-title has-children">
-                                        <a href="#">Others</a>
-                                        <ul class="dropdown">
-                                            <li><a href="error404.html">Error 404</a></li>
-                                            <li><a href="compare.html">Compare Page</a></li>
-                                            <li><a href="cart.html">Cart Page</a></li>
-                                            <li><a href="checkout.html">Checkout Page</a></li>
-                                            <li><a href="wishlist.html">Wish List Page</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children ">
-                                <a href="#">Blog</a>
-                                <ul class="dropdown">
-                                    <li><a href="blog.html">Blog Left Sidebar</a></li>
-                                    <li><a href="blog-list-right-sidebar.html">Blog List Right Sidebar</a></li>
-                                    <li><a href="blog-list-fullwidth.html">Blog List Fullwidth</a></li>
-                                    <li><a href="blog-grid.html">Blog Grid Page</a></li>
-                                    <li><a href="blog-grid-right-sidebar.html">Blog Grid Right Sidebar</a></li>
-                                    <li><a href="blog-grid-fullwidth.html">Blog Grid Fullwidth</a></li>
-                                    <li><a href="blog-details-sidebar.html">Blog Details Sidebar Page</a></li>
-                                    <li><a href="blog-details-fullwidth.html">Blog Details Fullwidth Page</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children ">
-                                <a href="#">Pages</a>
-                                <ul class="dropdown">
-                                    <li><a href="frequently-questions.html">FAQ</a></li>
-                                    <li><a href="my-account.html">My Account</a></li>
-                                    <li><a href="login-register.html">login &amp; register</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="about-us.html">About Us</a></li>
-                            <li><a href="contact-us.html">Contact</a></li>
-                        </ul>
-                    </nav>
-                    <!-- mobile menu navigation end -->
-                </div>
-                <!-- mobile menu end -->
-                <div class="offcanvas-widget-area">
-                    <div class="switcher">
-                        <div class="language">
-                            <span class="switcher-title">Language: </span>
-                            <div class="switcher-menu">
-                                <ul>
-                                    <li>
-                                        <a href="#">English</a>
-                                        <ul class="switcher-dropdown">
-                                            <li><a href="#">German</a></li>
-                                            <li><a href="#">French</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="currency">
-                            <span class="switcher-title">Currency: </span>
-                            <div class="switcher-menu">
-                                <ul>
-                                    <li>
-                                        <a href="#">$ USD</a>
-                                        <ul class="switcher-dropdown">
-                                            <li><a href="#">€ EUR</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="top-info-wrap text-left text-black">
-                        <ul class="address-info">
-                            <li>
-                                <i class="fa fa-phone"></i>
-                                <a href="info%40yourdomain.html">(1245) 2456 012</a>
-                            </li>
-                            <li>
-                                <i class="fa fa-envelope"></i>
-                                <a href="info%40yourdomain.html">info@yourdomain.com</a>
-                            </li>
-                        </ul>
-                        <div class="widget-social">
-                            <a class="facebook-color-bg" title="Facebook-f" href="#">
-                                <i class="fa fa-facebook-f"></i>
-                            </a>
-                            <a class="twitter-color-bg" title="Twitter" href="#"><i class="fa fa-twitter"></i></a>
-                            <a class="linkedin-color-bg" title="Linkedin" href="#">
-                                <i class="fa fa-linkedin"></i>
-                            </a>
-                            <a class="youtube-color-bg" title="Youtube" href="#"><i class="fa fa-youtube"></i></a>
-                            <a class="vimeo-color-bg" title="Vimeo" href="#"><i class="fa fa-vimeo"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </aside>
-    <!-- off-canvas menu end -->
-    <!-- off-canvas menu start -->
-    <aside class="off-canvas-menu-wrapper" id="sideMenu">
-        <div class="off-canvas-overlay"></div>
-        <div class="off-canvas-inner-content">
-            <div class="off-canvas-inner">
+        <!-- Phần cuối của tiêu đề chính -->
+        <!-- bắt đầu menu ngoài canvas -->
+        <aside class="off-canvas-wrapper" id="mobileMenu">
+            <div class="off-canvas-overlay"></div>
+            <div class="off-canvas-inner-content">
                 <div class="btn-close-off-canvas">
                     <i class="fa fa-times"></i>
                 </div>
-                <!-- offcanvas widget area start -->
-                <div class="offcanvas-widget-area">
-                    <ul class="menu-top-menu">
-                        <li><a href="about-us.html">About Us</a></li>
-                    </ul>
-                    <p class="desc-content">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. <br> Ut enim ad minim veniam, quis
-                        nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. <br> Duis aute
-                        irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                        anim id est laborum.
-                    </p>
-                    <div class="switcher">
-                        <div class="language">
-                            <span class="switcher-title">Language: </span>
-                            <div class="switcher-menu">
-                                <ul>
-                                    <li>
-                                        <a href="#">English</a>
-                                        <ul class="switcher-dropdown">
-                                            <li><a href="#">German</a></li>
-                                            <li><a href="#">French</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="currency">
-                            <span class="switcher-title">Currency: </span>
-                            <div class="switcher-menu">
-                                <ul>
-                                    <li>
-                                        <a href="#">$ USD</a>
-                                        <ul class="switcher-dropdown">
-                                            <li><a href="#">€ EUR</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                <div class="off-canvas-inner">
+                    <div class="search-box-offcanvas">
+                        <form>
+                            <input type="text" placeholder="Search product...">
+                            <button class="search-btn"><i class="fa fa-search"></i></button>
+                        </form>
                     </div>
-                    <div class="top-info-wrap text-left text-black">
-                        <ul class="address-info">
-                            <li>
-                                <i class="fa fa-phone"></i>
-                                <a href="info%40yourdomain.html">(1245) 2456 012</a>
-                            </li>
-                            <li>
-                                <i class="fa fa-envelope"></i>
-                                <a href="info%40yourdomain.html">info@yourdomain.com</a>
-                            </li>
-                        </ul>
-                        <div class="widget-social">
-                            <a class="facebook-color-bg" title="Facebook-f" href="#">
-                                <i class="fa fa-facebook-f"></i>
-                            </a>
-                            <a class="twitter-color-bg" title="Twitter" href="#"><i class="fa fa-twitter"></i></a>
-                            <a class="linkedin-color-bg" title="Linkedin" href="#">
-                                <i class="fa fa-linkedin"></i>
-                            </a>
-                            <a class="youtube-color-bg" title="Youtube" href="#"><i class="fa fa-youtube"></i></a>
-                            <a class="vimeo-color-bg" title="Vimeo" href="#"><i class="fa fa-vimeo"></i></a>
+                    <!-- bắt đầu menu di động -->
+                    <div class="mobile-navigation">
+                        <!-- bắt đầu điều hướng menu di động -->
+                        <nav>
+                            <ul class="mobile-menu">
+                                <li class="menu-item-has-children">
+                                    <a href="/">Trang Chủ</a>
+
+                                </li>
+                                <li class="menu-item-has-children">
+                                    <a href="#">Cửa Hàng</a>
+                                    <ul class="megamenu dropdown">
+                                        <li class="mega-title has-children">
+                                            <a href="#">Bố Cục Cửa Hàng</a>
+                                            <ul class="dropdown">
+                                                <li><a href="shop.html">Mua Sắm Ở Thanh Bên Trái</a></li>
+                                                <li><a href="shop-right-sidebar.html">Mua Sắm Ở Thanh Bên Phải</a></li>
+                                                <li>
+                                                    <a href="shop-list-left.html">Danh Sách Cửa Hàng Thanh Bên Trái</a>
+                                                </li>
+                                                <li>
+                                                    <a href="shop-list-right.html">Danh Sách Cửa Hàng Thanh Bên Phải</a>
+                                                </li>
+                                                <li><a href="shop-fullwidth.html">Cửa Hàng Toàn Chiều Rộng</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="mega-title has-children">
+                                            <a href="#">Thông Tin Chi Tiết Sản Phẩm</a>
+                                            <ul class="dropdown">
+                                                <li><a href="product-details.html">Chi Tiết Sản Phẩm Duy Nhất</a></li>
+                                                <li>
+                                                    <a href="variable-product-details.html">
+                                                        Chi Tiết Sản Phẩm Thay
+                                                        Đổi
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="external-product-details.html">
+                                                        Chi Tiết Sản Phẩm Bên
+                                                        Ngoài
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="gallery-product-details.html">
+                                                        Thư Viện Ảnh Chi Tiết Sản
+                                                        Phẩm
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="countdown-product-details.html">
+                                                        Chi Tiết Sản Phẩm Đếm
+                                                        Ngược
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="mega-title has-children">
+                                            <a href="#">Người Khác</a>
+                                            <ul class="dropdown">
+                                                <li><a href="error404.html">Lỗi 404</a></li>
+                                                <li><a href="compare.html">So Sánh Trang</a></li>
+                                                <li><a href="cart.html">Trang Giỏ Hàng</a></li>
+                                                <li><a href="checkout.html">Trang Thanh Toán</a></li>
+                                                <li><a href="wishlist.html">Trang Danh Sách Yêu Thích</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item-has-children ">
+                                    <a href="#">Blog</a>
+                                    <ul class="dropdown">
+                                        <li><a href="blog.html">Thanh Bên Trái Của Blog</a></li>
+                                        <li>
+                                            <a href="blog-list-right-sidebar.html">Danh Sách Blog Thanh Bên Phải</a>
+                                        </li>
+                                        <li><a href="blog-list-fullwidth.html">Danh Sách Blog Toàn Chiều Rộng</a></li>
+                                        <li><a href="blog-grid.html">Trang Lưới Blog</a></li>
+                                        <li><a href="blog-grid-right-sidebar.html">Lưới Blog Thanh Bên Phải</a></li>
+                                        <li><a href="blog-grid-fullwidth.html">Toàn Bộ Chiều Rộng Lưới Blog</a></li>
+                                        <li><a href="blog-details-sidebar.html">Chi Tiết Blog Trang Thanh Bên</a></li>
+                                        <li>
+                                            <a href="blog-details-fullwidth.html">
+                                                Chi Tiết Blog Trang Toàn Chiều
+                                                Rộng
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="menu-item-has-children ">
+                                    <a href="#">Trang</a>
+                                    <ul class="dropdown">
+                                        <li><a href="frequently-questions.html">Câu Hỏi Thường Gặp</a></li>
+                                        <li><a href="my-account.html">Tài Khoản Của Tôi</a></li>
+                                        <li><a href="login-register.html">Đăng Nhập &amp; Đăng Ký</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="about-us.html">Về Chúng Tôi </a></li>
+                                <li><a href="contact-us.html">Chúng Tôi</a></li>
+                            </ul>
+                        </nav>
+                        <!-- kết thúc điều hướng menu di động -->
+                    </div>
+                    <!-- cuối menu di động -->
+                    <div class="offcanvas-widget-area">
+                        <div class="switcher">
+                            <div class="language">
+                                <span class="switcher-title">NGÔN NGỮ: </span>
+                                <div class="switcher-menu">
+                                    <ul>
+                                        <li>
+                                            <a href="#">Tiếng Anh</a>
+                                            <ul class="switcher-dropdown">
+                                                <li><a href="#">Tiếng Đức</a></li>
+                                                <li><a href="#">Tiếng Pháp</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="currency">
+                                <span class="switcher-title">TIỀN TỆ: </span>
+                                <div class="switcher-menu">
+                                    <ul>
+                                        <li>
+                                            <a href="#">$ USD</a>
+                                            <ul class="switcher-dropdown">
+                                                <li><a href="#">€ EUR</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="top-info-wrap text-left text-black">
+                            <ul class="address-info">
+                                <li>
+                                    <i class="fa fa-phone"></i>
+                                    <a href="info%40yourdomain.html">(1245) 2456 012</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-envelope"></i>
+                                    <a href="info%40yourdomain.html">info@yourdomain.com</a>
+                                </li>
+                            </ul>
+                            <div class="widget-social">
+                                <a class="facebook-color-bg" title="Facebook-f" href="#">
+                                    <i class="fa fa-facebook-f"></i>
+                                </a>
+                                <a class="twitter-color-bg" title="Twitter" href="#"><i class="fa fa-twitter"></i></a>
+                                <a class="linkedin-color-bg" title="Linkedin" href="#">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                                <a class="youtube-color-bg" title="Youtube" href="#"><i class="fa fa-youtube"></i></a>
+                                <a class="vimeo-color-bg" title="Vimeo" href="#"><i class="fa fa-vimeo"></i></a>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!-- offcanvas widget area end -->
             </div>
-        </div>
-    </aside>
-    <!-- off-canvas menu end -->
+        </aside>
+        <!-- phần cuối của menu ngoài canvas -->
+        <!-- bắt đầu menu ngoài canvas -->
+        <aside class="off-canvas-menu-wrapper" id="sideMenu">
+            <div class="off-canvas-overlay"></div>
+            <div class="off-canvas-inner-content">
+                <div class="off-canvas-inner">
+                    <div class="btn-close-off-canvas">
+                        <i class="fa fa-times"></i>
+                    </div>
+                    <!-- bắt đầu khu vực tiện ích offcanvas -->
+                    <div class="offcanvas-widget-area">
+                        <ul class="menu-top-menu">
+                            <li><a href="about-us.html">Về Chúng Tôi</a></li>
+                        </ul>
+                        <p class="desc-content">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. <br> Với một mục tiêu tối thiểu là có
+                            thể làm được, điều này sẽ không xảy ra khi bạn phải làm việc quá sức để có được một giải
+                            pháp sau mỗi giao dịch. <br> Bạn aute irure dolor in reprehenderit in voluptate velit esse
+                            cillum dolore eu fugiat nulla pariatur. Ngoại trừ tội lỗi không thường xuyên xảy ra, đó là
+                            lý do tại sao bạn không thể làm điều đó.
+                        </p>
+                        <div class="switcher">
+                            <div class="language">
+                                <span class="switcher-title">NGÔN NGỮ: </span>
+                                <div class="switcher-menu">
+                                    <ul>
+                                        <li>
+                                            <a href="#">Tiếng Anh</a>
+                                            <ul class="switcher-dropdown">
+                                                <li><a href="#">Tiếng Đức</a></li>
+                                                <li><a href="#">Tiếng Pháp</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="currency">
+                                <span class="switcher-title">TIỀN TỆ: </span>
+                                <div class="switcher-menu">
+                                    <ul>
+                                        <li>
+                                            <a href="#">$ USD</a>
+                                            <ul class="switcher-dropdown">
+                                                <li><a href="#">€ EUR</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="top-info-wrap text-left text-black">
+                            <ul class="address-info">
+                                <li>
+                                    <i class="fa fa-phone"></i>
+                                    <a href="info%40yourdomain.html">(1245) 2456 012</a>
+                                </li>
+                                <li>
+                                    <i class="fa fa-envelope"></i>
+                                    <a href="info%40yourdomain.html">info@yourdomain.com</a>
+                                </li>
+                            </ul>
+                            <div class="widget-social">
+                                <a class="facebook-color-bg" title="Facebook-f" href="#">
+                                    <i class="fa fa-facebook-f"></i>
+                                </a>
+                                <a class="twitter-color-bg" title="Twitter" href="#"><i class="fa fa-twitter"></i></a>
+                                <a class="linkedin-color-bg" title="Linkedin" href="#">
+                                    <i class="fa fa-linkedin"></i>
+                                </a>
+                                <a class="youtube-color-bg" title="Youtube" href="#"><i class="fa fa-youtube"></i></a>
+                                <a class="vimeo-color-bg" title="Vimeo" href="#"><i class="fa fa-vimeo"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- phần cuối của khu vực tiện ích offcanvas -->
+                </div>
+            </div>
+        </aside>
+        <!-- phần cuối của menu ngoài canvas -->
 </header>

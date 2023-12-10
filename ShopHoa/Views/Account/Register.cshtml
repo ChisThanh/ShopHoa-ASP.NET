@@ -34,7 +34,6 @@
                     </div>
                     <form action="~/Account/Register" method="post">
                         @Html.ValidationSummary()
-                        @*@ViewData.ModelState["Error"].Errors[0].ErrorMessage*@
                         <div class="single-input-item mb-3">
                             <input type="text" name="FullName" placeholder="Name" value="@ViewBag.FullName">
                         </div>
@@ -46,17 +45,8 @@
                         <div class="single-input-item mb-3">
                             <input type="Password" name="Password" placeholder="Enter your Password">
                         </div>
-
-                        <div class="single-input-item mb-3">
-                            <div class="login-reg-form-meta d-flex align-items-center justify-content-between">
-                                <div class="remember-meta mb-3">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="rememberMe">
-                                        <label class="custom-control-label" for="rememberMe">Subscribe Our Newsletter</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                     
+                        
                         <div class="single-input-item mb-3">
                             <button class="btn flosun-button secondary-btn theme-color rounded-0">Register</button>
                         </div>

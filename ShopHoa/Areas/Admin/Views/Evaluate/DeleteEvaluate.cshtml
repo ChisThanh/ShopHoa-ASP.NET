@@ -1,0 +1,73 @@
+﻿@model ShopHoa.Models.Evaluate
+
+@{
+    ViewBag.Title = "DeleteEvaluate";
+    Layout = "~/Areas/Admin/Views/Shared/Master.cshtml";
+}
+
+<h2>DeleteEvaluate</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Evaluate</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Comment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Star)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Star)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateEvaluate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateEvaluate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Imgae)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Imgae)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdFlower)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdFlower)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdClient)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdClient)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "ShowEvaluate")
+        </div>
+    }
+</div>

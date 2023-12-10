@@ -1,0 +1,56 @@
+﻿@model IEnumerable<ShopHoa.Models.AspNetUser>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/Master.cshtml";
+}
+
+<h1>Danh sách khác hàng</h1>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FullName)
+        </th>
+       
+      
+        <th>
+            @Html.DisplayNameFor(model => model.Avatar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.FullName)
+        </td>
+        <td>
+            @if (item.Avatar == null)
+            {
+                <img src="https://th.bing.com/th/id/OIP.30G8owdZdLnzbVpYdMt7awAAAA?w=260&h=261&rs=1&pid=ImgDetMain" alt="Alternate Text"  width="96" height="96"/>
+            }
+            else
+            {
+               <img src="@item.Avatar" alt="Alternate Text" />
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

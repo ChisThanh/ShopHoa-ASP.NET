@@ -1,0 +1,370 @@
+﻿@using ShopHoa.Models; 
+@{
+    ViewBag.Title = "ShowDetailFlower";
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+<!-- Khu vực Breadcrumb bắt đầu ở đây -->
+<div class="breadcrumbs-area position-relative">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="breadcrumb-content position-relative section-content">
+                    <h3 class="title-3">Thông Tin Chi Tiết Sản Phẩm</h3>
+                    <ul>
+                        <li><a href="index.html">Trang Chủ</a></li>
+                        <li>Thông Tin Chi Tiết Sản Phẩm</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Khu vực Breadcrumb kết thúc ở đây -->
+<!-- Bắt đầu khu vực chính của một sản phẩm -->
+<div class="single-product-main-area">
+    <div class="container container-default custom-area">
+        <div class="row">
+            <div class="col-lg-5 offset-lg-0 col-md-8 offset-md-2 col-custom">
+                <div class="product-details-img">
+                    <div class="single-product-img swiper-container gallery-top popup-gallery">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <a class="w-100" href="/assets/images/product/@Model.Image">
+                                    <img class="w-100" src="/assets/images/product/@Model.Image" alt="Product">
+                                </a>
+                            </div>
+                     
+                        </div>
+                    </div>
+                    <div class="single-product-thumb swiper-container gallery-thumbs">
+                       
+                        <!-- Thêm mũi tên -->
+                        <div class="swiper-button-next swiper-button-white">
+                            <i class="lnr lnr-arrow-right"></i>
+                        </div>
+                        <div class="swiper-button-prev swiper-button-white"><i class="lnr lnr-arrow-left"></i></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7 col-custom">
+                <div class="product-summery position-relative">
+                    <div class="product-head mb-3">
+                        <h2 class="product-title">@Model.NameFlower</h2>
+                    </div>
+                    <div class="price-box mb-2">
+                        <span class="regular-price">@String.Format("{0:0,00}", @Model.Price)</span>
+                        <span class="old-price"><del>$90.00</del></span>
+                    </div>
+                    <div class="product-rating mb-3">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                    <div class="sku mb-3">
+                        <span>Mã hàng: 12345</span>
+                    </div>
+                    <p class="desc-content mb-5">
+                        Tôi phải giải thích cho bạn làm thế nào tất cả những ý tưởng sai
+                        lầm về việc tố cáo niềm vui và ca ngợi nỗi đau đã ra đời và tôi sẽ cung cấp cho bạn một bản
+                        tường trình đầy đủ về hệ thống, đồng thời giải thích những lời dạy thực tế của nhà thám hiểm
+                        vĩ đại về sự thật, bậc thầy xây dựng nên hạnh phúc của con người.
+                    </p>
+                    <div class="quantity-with_btn mb-5">
+                        <div class="quantity">
+                            <div class="cart-plus-minus">
+                                <input class="cart-plus-minus-box" value="1" type="text">
+                                <div class="dec qtybutton">-</div>
+                                <div class="inc qtybutton">+</div>
+                            </div>
+                        </div>
+                        <div class="add-to_cart">
+                            <a  id="btnAddCart" class="btn product-cart button-icon flosun-button dark-btn" href="##" data-id="@Model.IdFlower" >
+                                Thêm vào
+                                giỏ hàng
+                            </a>
+                        </div>
+                    </div>
+                    <div class="social-share mb-4">
+                        <span>Chia sẻ: </span>
+                        <a href="#"><i class="fa fa-facebook-square facebook-color"></i></a>
+                        <a href="#"><i class="fa fa-twitter-square twitter-color"></i></a>
+                        <a href="#"><i class="fa fa-linkedin-square linkedin-color"></i></a>
+                        <a href="#"><i class="fa fa-pinterest-square pinterest-color"></i></a>
+                    </div>
+                    <div class="payment">
+                        <a href="#">
+                            <img class="border" src="/assets/images/payment/payment-icon.png"
+                                 alt="Payment">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-no-text">
+            <div class="col-lg-12 col-custom">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active text-uppercase" id="home-tab" data-bs-toggle="tab"
+                           href="#connect-1" role="tab" aria-selected="true">SỰ MIÊU TẢ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-uppercase" id="profile-tab" data-bs-toggle="tab" href="#connect-2"
+                           role="tab" aria-selected="false">ĐÁNH GIÁ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-uppercase" id="contact-tab" data-bs-toggle="tab" href="#connect-3"
+                           role="tab" aria-selected="false">CHÍNH SÁCH VẬN CHUYỂN</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-uppercase" id="review-tab" data-bs-toggle="tab" href="#connect-4"
+                           role="tab" aria-selected="false">BIỂU ĐỒ KÍCH THƯỚC</a>
+                    </li>
+                </ul>
+                <div class="tab-content mb-text" id="myTabContent">
+                    <div class="tab-pane fade show active" id="connect-1" role="tabpanel"
+                         aria-labelledby="home-tab">
+                        <div class="desc-content">
+                            <p class="mb-3">
+                                Mặt khác, chúng tôi tố cáo với sự phẫn nộ chính đáng và không thích
+                                những người bị mê hoặc và mất tinh thần bởi sự quyến rũ của thú vui nhất thời, mù
+                                quáng bởi ham muốn đến mức họ không thể thấy trước nỗi đau và rắc rối sắp xảy ra sau
+                                đó; và sự đổ lỗi tương đương thuộc về những người thất bại trong nhiệm vụ của mình
+                                do yếu kém về ý chí, điều này cũng giống như nói rằng do chùn bước trước sự vất vả
+                                và đau đớn. Những trường hợp này là hoàn toàn đơn giản và dễ dàng để phân biệt.
+                                Trong giờ phút rảnh rỗi, khi khả năng lựa chọn của chúng ta không bị cản trở và khi
+                                không có gì ngăn cản chúng ta có thể làm điều mình thích nhất, thì mọi niềm vui đều
+                                được đón nhận và mọi nỗi đau đều có thể tránh được. Nhưng trong một số trường hợp
+                                nhất định và do các yêu cầu về nghĩa vụ hoặc nghĩa vụ kinh doanh, thường xảy ra
+                                trường hợp niềm vui phải bị từ chối và những khó chịu phải chấp nhận. Do đó, người
+                                khôn ngoan luôn tuân theo nguyên tắc lựa chọn này trong những vấn đề này: anh ta từ
+                                chối những thú vui để đảm bảo những thú vui khác lớn hơn, hoặc nếu không thì anh ta
+                                chịu đựng nỗi đau để tránh những nỗi đau tồi tệ hơn.
+                            </p>
+                            <p>
+                                Et harum quidem rerum facilis est et expedita Differentio. Nam libero tạm thời, cum
+                                soluta nobis est eligendi optio cumque nihil impedit quo trừ id quod maxime placeat
+                                facere possimus, omnis voluptas giả định, omnis dolor đẩy lùi. Temporibus autem
+                                quibusdam et aut officiis debitis aut rerum necessitatibus saepe Eveniet ut et
+                                voluptates Repudiandae sint et molestiae non recusandae. Itaque Earum rerum hic
+                                tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores bí danh
+                                consequatur aut perferendis doloribus asperiores đẩy lùi.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="connect-2" role="tabpanel" aria-labelledby="profile-tab">
+                        @{ var eval = ViewBag.Eval as List<Evaluate>; }
+                        <!-- Bắt đầu một nội dung -->
+                        @if (eval.Count() == 0)
+                        {
+                            <div class="product_tab_content  border p-3">
+                                <div class="review_address_inner">
+                                    <!-- Bắt đầu đánh giá đơn -->
+                                    <div class="pro_review mb-5">
+                                        <div class="review_thumb">
+                                            <img alt="review images" src="/assets/images/review/1.jpg">
+                                        </div>
+                                        <div class="review_details">
+                                            <div class="review_info mb-2">
+                                                <div class="product-rating mb-2">
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                    <i class="fa fa-star-o"></i>
+                                                </div>
+                                                <h5>Admin</h5>
+                                            </div>
+                                            <p>
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin in viverra
+                                                ex, vitae vestibulum arcu. Duis sollicitudin metus sed lorem commodo, eu
+                                                dapibus libero interdum. Morbi convallis viverra erat, et aliquet orci
+                                                congue vel. Integer in odio enim. Pellentesque in dignissim leo. Vivamus
+                                                varius ex sit amet quam tincidunt iaculis.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <!-- Kết thúc đánh giá đơn -->
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            foreach (var i in eval)
+                            {
+                                <div class="product_tab_content  border p-3">
+                                    <div class="review_address_inner">
+                                        <!-- Bắt đầu đánh giá đơn -->
+                                        <div class="pro_review mb-5">
+                                            <div class="review_thumb">
+                                                <img alt="review images" src="/assets/images/review/1.jpg">
+                                            </div>
+                                            <div class="review_details">
+                                                <div class="review_info mb-2">
+                                                    <div class="product-rating mb-2">
+                                                        @for (int j = 1; j <= 5; j++)
+                                                        {
+                                                            if (j <= i.Star)
+                                                            {
+                                                                <i class="fa fa-star"></i>
+                                                            }
+                                                            else
+                                                            {
+                                                                <i class="fa fa-star-o"></i>
+                                                            }
+                                                        }
+                                                    </div>
+                                                    <h5>@i.IdClient</h5>
+
+                                                </div>
+                                                <p>
+                                                   @i.Comment
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!-- Kết thúc đánh giá đơn -->
+                                    </div>
+                                </div>
+                                <br />
+                            }
+                        }
+                        <!-- Kết thúc nội dung đơn -->
+
+                    </div>
+                    <div class="tab-pane fade" id="connect-3" role="tabpanel" aria-labelledby="contact-tab">
+                        <div class="shipping-policy">
+                            <h4 class="title-3 mb-4">Chính sách vận chuyển của cửa hàng chúng tôi</h4>
+                            <p class="desc-content mb-2">
+                                Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+                                sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat
+                                volutpat. Với điều kiện tối thiểu là có thể thực hiện được, điều này sẽ không thể
+                                thực hiện được khi bạn bị lobortis lobortis và không có đủ tiền sau mỗi giao dịch.
+                                Duis autem vel eum iriure dolor in hendrerit in vulputate
+                            </p>
+                            <ul class="policy-list mb-2">
+                                <li>1-2 ngày làm việc (Thường là vào cuối ngày)</li>
+                                <li><a href="#">Đảm bảo hoàn tiền trong 30 ngày</a></li>
+                                <li>Hỗ trợ trực tiếp 24/7</li>
+                                <li>odio dignissim qui blandit praesent</li>
+                                <li>luptatum zzril delenit augue duis dolore</li>
+                                <li>te feugait nulla facilisi.</li>
+                            </ul>
+                            <p class="desc-content mb-2">
+                                Nam tự do tạm thời kiêm soluta nobis eleifend tùy chọn
+                                congue nihil imperdiet doming id quod mazim placerat facer possim assum. Typi
+                                non-habent claritatem insitam; est usus legentis in iis qui facit eorum>Nam tự do
+                                tạm thời kiêm soluta nobis eleifend option congue nihil imperdiet doming id quod
+                                mazim placerat facer possim assum. Typi non-habent claritatem insitam; est usus
+                                legentis in iis qui facit eorum
+                            </p>
+                            <p class="desc-content mb-2">
+                                claritatem. Các cuộc điều tra đã chứng minh các giảng viên
+                                hợp pháp với tôi lius quod ii legunt saepius. Claritas est etiam Processus
+                                Dynamicus, qui sequitur Mututur Consuetudium Lectorum. Mirum est notare quam lita
+                                gothica, quam Nunc putamus parum claram, anteposuerit litarum formas humanitatis per
+                            </p>
+                            <p class="desc-content mb-2">
+                                seacula quarta decima và quinta decima. Eodem modo typi,
+                                qui nunc nobis videntur parum clari, lễ hôn phu trong tương lai.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="connect-4" role="tabpanel" aria-labelledby="review-tab">
+                        <div class="size-tab table-responsive-lg">
+                            <h4 class="title-3 mb-4">Biểu đồ kích thước</h4>
+                            <table class="table border">
+                                <tbody>
+                                    <tr>
+                                        <td class="cun-name"><span>Vương quốc Anh</span></td>
+                                        <td>18</td>
+                                        <td>20</td>
+                                        <td>22</td>
+                                        <td>24</td>
+                                        <td>26</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="cun-name"><span>Châu Âu</span></td>
+                                        <td>46</td>
+                                        <td>48</td>
+                                        <td>50</td>
+                                        <td>52</td>
+                                        <td>54</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="cun-name"><span>Hoa Kỳ</span></td>
+                                        <td>14</td>
+                                        <td>16</td>
+                                        <td>18</td>
+                                        <td>20</td>
+                                        <td>22</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="cun-name"><span>Châu Úc</span></td>
+                                        <td>28</td>
+                                        <td>10</td>
+                                        <td>12</td>
+                                        <td>14</td>
+                                        <td>16</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="cun-name"><span>Canada</span></td>
+                                        <td>24</td>
+                                        <td>18</td>
+                                        <td>14</td>
+                                        <td>42</td>
+                                        <td>36</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Cuối khu vực chính của một sản phẩm -->
+<!--Bắt đầu khu vực sản phẩm-->
+<div class="product-area mt-text-3">
+    <div class="container custom-area-2 overflow-hidden">
+        <div class="row">
+            <!--Bắt đầu phần tiêu đề -->
+            <div class="col-12 col-custom">
+                <div class="section-title text-center mb-30">
+                    <span class="section-title-1">Hợp thời trang nhất</span>
+                    <h3 class="section-title-3">Sản phẩm nổi bật</h3>
+                </div>
+            </div>
+            <!--Cuối phần tiêu đề -->
+        </div>
+        <div class="row product-row">
+            <div class="col-12 col-custom">
+                <div class="product-slider swiper-container anime-element-multi">
+                    <div class="swiper-wrapper">
+                        @Html.Action("SlideShowChiTiet", "Flower")
+                    </div>
+                    <!-- Phân trang bằng thanh trượt -->
+                    <div class="swiper-pagination default-pagination"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Cuối khu vực sản phẩm-->
+@section js{
+<script>
+    $(document).on("click", "#btnAddCart", function () {
+        var parent = $(this).closest('.col-lg-7.col-custom');
+        var quantity = parseFloat($('.cart-plus-minus-box').val());
+        var price = parseInt(parent.find('.regular-price').text().replace(/\D/g, ''), 10);
+        var id = $(this).data(id).id;
+        var name = parent.find('.product-title').text().trim();
+        cart.setItem(id, name, '/assets/images/product/1.jpg', price, quantity);
+        loadCartMini();
+        helper.showNotification('top', 'center');
+        $('#exampleModalCenter').modal('hide');
+    })
+</script>
+
+}

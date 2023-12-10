@@ -1,0 +1,43 @@
+﻿@model ShopHoa.Models.Flower
+
+@{
+    ViewBag.Title = "DetailFlower";
+    Layout = "~/Areas/Admin/Views/Shared/Master.cshtml";
+}
+<h2 class="text-center text-primary">DetailFlower</h2>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th> @Html.DisplayNameFor(model => model.IdFlower)</th>
+            <th> @Html.DisplayNameFor(model => model.NameFlower)</th>
+            <th>  @Html.DisplayNameFor(model => model.Image)</th>
+            <th> @Html.DisplayNameFor(model => model.IdType)</th>
+            <th>  @Html.DisplayNameFor(model => model.Price)</th>
+            <th>  @Html.DisplayNameFor(model => model.Note)</th>
+            <th>  @Html.DisplayNameFor(model => model.Status)</th>
+            <th>@Html.DisplayNameFor(model => model.IdDiscount)</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr class="success">
+            <td>@Model.IdFlower</td>
+            <td>@Model.NameFlower</td>
+            <td><img src="~/assets/images/product/@Model.Image" alt="" class="product-image-1 w-25" width="100px"></td>
+            <td>@Model.IdType</td>
+            <td>@Model.Price</td>
+            <td>@Model.Note</td>
+            <td>@Model.Status</td>
+            <td>@Model.IdDiscount</td>
+
+        </tr>
+        
+    </tbody>
+</table>
+<p>
+    <span class="btn btn-primary" style="width:200px"> @Html.ActionLink("Edit", "EditFlower", new { id = Model.IdFlower }) </span>
+</p>
+<p>
+   
+    @Html.ActionLink("Back to List", "ShowFlower")
+</p>

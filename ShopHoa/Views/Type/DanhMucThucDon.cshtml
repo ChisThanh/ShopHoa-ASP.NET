@@ -1,0 +1,13 @@
+﻿@model IEnumerable<ShopHoa.Models.Type>
+@foreach (var item in Model)
+{
+    <li class="menu-item-has-children">
+        <a href="#">@item.NameType</a>
+        <ul class="dropdown">
+            @foreach (var item1 in item.Flowers.Take(3))
+            {
+               <li><a href="/Flower/ShowDetailFlower?id=@item1.IdFlower">@item1.NameFlower</a></li>
+            }      
+        </ul>
+    </li>
+}

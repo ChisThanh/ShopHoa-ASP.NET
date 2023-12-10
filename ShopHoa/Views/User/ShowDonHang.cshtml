@@ -1,0 +1,75 @@
+﻿@model IEnumerable<ShopHoa.Models.Cart>
+@{ 
+    var t = 1;
+}
+<div class="tab-pane fade active show" id="orders" role="tabpanel">
+    <div class="myaccount-content">
+        <h3>Orders</h3>
+        <div class="myaccount-table table-responsive text-center">
+            <table class="table table-bordered">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Order</th>
+                        <th>IdBill</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@t</td>
+                            <td>@item.IdBill</td>
+                            @if (@item.Status == "TC")
+                            {
+                                <td>
+                                    <a class="btn flosun-button primary-btn" href="/user/RateProduct?id=@item.IdBill.Trim()">Đánh giá</a>
+                                    <a class="btn flosun-button primary-btn" href="/user/cart?id=@item.IdBill.Trim()">Xem</a>
+                                    <br />
+                                    <p>Giao thành công</p>
+                                </td>
+                            }
+                            else if (@item.Status == "DG")
+                            {
+                                <td>
+                                    <a class="btn flosun-button primary-btn" href="/user/cart?id=@item.IdBill.Trim()">Xem</a>
+                                    <br />
+                                    <p>Đã đánh giá</p>
+                                </td>
+
+                            }
+                            else if (@item.Status == "DGH")
+                            {
+                                <td>
+                                    <a class="btn flosun-button primary-btn" href="/user/cart?id=@item.IdBill.Trim()">Xem</a>
+                                    <br />
+                                    <p>Đang giao hàng</p>
+                                </td>
+                            }
+                            else if (@item.Status == "HD")
+                            {
+                                <td>
+                                    <a class="btn flosun-button primary-btn" href="/user/cart?id=@item.IdBill.Trim()">Xem</a>
+                                    <br />
+                                    <p>Đã hủy</p>
+                                </td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <a class="btn flosun-button primary-btn" href="/user/cancelCart?id=@item.IdBill.Trim()">Hủy</a>
+                                    <a class="btn flosun-button primary-btn" href="/user/cart?id=@item.IdBill.Trim()">Xem</a>
+                                    <br />
+                                    <p>Đang xử lý đơn</p>
+                                </td>
+                            }
+                            <td>@item.Date</td>
+                        </tr>
+
+                        t++;
+                    }
+            </table>
+        </div>
+    </div>
+</div>

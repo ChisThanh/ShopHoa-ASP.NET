@@ -1,0 +1,67 @@
+﻿@model ShopHoa.Models.Evaluate
+
+@{
+    ViewBag.Title = "DetailEvaluate";
+    Layout = "~/Areas/Admin/Views/Shared/Master.cshtml";
+}
+
+<h2>DetailEvaluate</h2>
+
+<div>
+    <h4>Evaluate</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.IdEvaluate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdEvaluate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdClient)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdClient)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Star)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Star)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Imgae)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Imgae)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdFlower)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdFlower)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "EditEvaluate", new { id = Model.IdEvaluate}) |
+    @Html.ActionLink("Back to List", "ShowEvaluate")
+</p>

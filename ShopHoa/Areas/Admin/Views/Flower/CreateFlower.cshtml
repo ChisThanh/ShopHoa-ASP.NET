@@ -1,0 +1,125 @@
+﻿@model ShopHoa.Models.Flower
+
+@{
+    ViewBag.Title = "CreateFlower";
+    Layout = "~/Areas/Admin/Views/Shared/Master.cshtml";
+}
+<h2 class="text-center text-primary">THÊM SẢN PHẨM</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+
+        <hr />
+        @if (ViewBag.Error != null)
+        {
+            @ViewBag.Error
+        }
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdFlower, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IdFlower, new { htmlAttributes = new { @class = "form-control valid" } })
+                @Html.ValidationMessageFor(model => model.IdFlower, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            @Html.LabelFor(model => model.IdType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IdType, new { htmlAttributes = new { @class = "form-control valid" } })
+                @Html.ValidationMessageFor(model => model.IdType, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control valid" } })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NameFlower, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NameFlower, new { htmlAttributes = new { @class = "form-control valid" } })
+                @Html.ValidationMessageFor(model => model.NameFlower, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Note, new { htmlAttributes = new { @class = "form-control valid" } })
+                @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Status, new { htmlAttributes = new { @class = "form-control valid" } })
+                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdDiscount, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IdDiscount, new { htmlAttributes = new { @class = "form-control valid" } })
+                @Html.ValidationMessageFor(model => model.IdDiscount, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control valid", @id= "fileInput", @onchange= "uploadImage()", type = "file" } })
+                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Thêm sản phẩm" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "ShowFlower")
+</div>
+
+@section js{
+    <script>
+        
+        function uploadImage() {
+            var fileInput = document.getElementById("fileInput");
+            var file = fileInput.files[0];
+
+            var formData = new FormData();
+            formData.append("file", file);
+
+            $.ajax({
+                type: "POST",
+                url: "/api/upload",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    alert("Upload thành công");
+                },
+                error: function (error) {
+                    alert("Upload không thành công");
+
+                }
+            });
+        }
+
+    </script>
+}

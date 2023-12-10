@@ -1,12 +1,7 @@
-﻿using ShopHoa.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.UI.WebControls;
+using System.Web.Management;
 
 namespace ShopHoa.ApiControllers
 {
@@ -40,6 +35,7 @@ namespace ShopHoa.ApiControllers
 
         //    return Json(response);
         //}
+       
     }
     
 }

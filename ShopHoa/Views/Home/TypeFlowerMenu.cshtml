@@ -1,0 +1,9 @@
+﻿@model IEnumerable<ShopHoa.Models.Type>
+
+<ul class="dropdown-submenu dropdown-hover">
+    @foreach (var item in Model)
+    {
+        <li><a href="/Flower/ShowHoaByType?MaLoai=@item.IdType"> @Html.DisplayFor(modelItem => item.NameType)</a></li>
+    }
+</ul>
+
