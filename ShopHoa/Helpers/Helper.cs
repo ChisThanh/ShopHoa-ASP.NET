@@ -1,21 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Mail;
 using System.Net;
-using System.Web;
 using System.Threading.Tasks;
-using System.Security.Claims;
-using System.Security.Principal;
-using System.Web.Mvc;
-using ShopHoa.Identity;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-using Microsoft.Owin.Security;
-using System.Web.Helpers;
-using FormCollection = System.Web.Mvc.FormCollection;
-using Microsoft.AspNet.Identity.Owin;
-using System.Security.Cryptography;
 using System.Text;
 
 namespace ShopHoa.Helpers

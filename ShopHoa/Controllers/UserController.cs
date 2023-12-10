@@ -103,5 +103,27 @@ namespace ShopHoa.Controllers
             db.SaveChanges();
             return RedirectToAction("ShowTTUser");
         }
+
+        public ActionResult formLienHe()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult formLienHe(string Name, string SDT, string Email, string NoiDung)
+        {
+            string template = System.IO.File.ReadAllText(Server.MapPath("~/Template/SentMail.html"));
+            template = template.Replace("{{Name}}", Name);
+            template = template.Replace("{{SDT}}", SDT);
+            template = template.Replace("{{Email}}", Email);
+            template = template.Replace("{{NoiDung}}", NoiDung);
+            // gửi mail cho shop//
+            string toEmail = "chithanh18042003@gmail.com";
+            Helper.SendEmail(toEmail, "Phản hồi từ khách hàng: " + Name, template);
+            return View("formHoiDap");
+        }
+        public ActionResult formHoiDap()
+        {
+            return View();
+        }
     }
 }

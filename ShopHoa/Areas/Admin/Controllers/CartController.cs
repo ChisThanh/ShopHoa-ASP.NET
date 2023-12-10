@@ -4,12 +4,18 @@ using System.Collections.Generic;
 using System.Drawing.Printing;
 using System.Linq;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
+using System.Web.Security;
+using AuthorizeAttribute = System.Web.Http.AuthorizeAttribute;
+using HttpPostAttribute = System.Web.Http.HttpPostAttribute;
 
 namespace ShopHoa.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class CartController : Controller
     {
+
         // GET: Admin/Cart
         AppDBConnext db = new AppDBConnext();
         public ActionResult Index()

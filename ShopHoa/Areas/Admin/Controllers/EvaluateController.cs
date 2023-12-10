@@ -7,6 +7,8 @@ using ShopHoa.Models;
 
 namespace ShopHoa.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
+
     public class EvaluateController : Controller
     {
         // GET: Admin/Evaluate

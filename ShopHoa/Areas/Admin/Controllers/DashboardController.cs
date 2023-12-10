@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace ShopHoa.Areas.Admin.Controllers
 {
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class DashboardController : Controller
     {
         // GET: Home

@@ -169,6 +169,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="Template\SentMail.html" />
     <Content Include="Web.config" />
     <Content Include="Areas\Admin\assets\css\bootstrap.min.css" />
     <Content Include="Areas\Admin\assets\css\demo.css" />
@@ -295,6 +296,7 @@
     <Compile Include="Areas\Admin\Controllers\EvaluateController.cs" />
     <Compile Include="Areas\Admin\Controllers\FlowerController.cs" />
     <Compile Include="Areas\Admin\Controllers\KhachHangController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TypeController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Controllers\CartController.cs" />
@@ -403,6 +405,9 @@
     <Content Include="Areas\Admin\Views\Evaluate\DeleteEvaluate.cshtml" />
     <Content Include="Areas\Admin\Views\Evaluate\EditEvaluate.cshtml" />
     <Content Include="Areas\Admin\Views\KhachHang\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Type\CreateType.cshtml" />
+    <Content Include="Areas\Admin\Views\Type\EditType.cshtml" />
+    <Content Include="Areas\Admin\Views\Type\ShowTypeFlower.cshtml" />
     <None Include="packages.config" />
     <Content Include="Areas\Admin\Views\Shared\Master.cshtml" />
     <Content Include="Areas\Admin\Views\Dashboard\Index.cshtml" />
@@ -436,6 +441,8 @@
     <Content Include="Views\Flower\ShowChiTietDonHang.cshtml" />
     <Content Include="Views\Flower\TimKiemTheoTen.cshtml" />
     <Content Include="Views\User\cart.cshtml" />
+    <Content Include="Views\User\formHoiDap.cshtml" />
+    <Content Include="Views\User\formLienHe.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

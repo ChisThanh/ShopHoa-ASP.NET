@@ -8,6 +8,7 @@ using ShopHoa.ViewModel;
 
 namespace ShopHoa.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class FlowerController : Controller
     {
         // GET: Admin/Flower
@@ -40,6 +41,14 @@ namespace ShopHoa.Areas.Admin.Controllers
         {
             try
             {
+                // Kiểm tra xem có hoa nào có cùng IdFlower đã tồn tại hay không
+                if (db.Flowers.Any(f => f.IdFlower == fl.IdFlower))
+                {
+                    ModelState.AddModelError("IdFlower", "IdFlower đã tồn tại. Vui lòng chọn IdFlower khác.");
+                    ViewBag.IdFlower = new SelectList(db.Flowers, "IdFlower", "Name", fl.IdFlower);
+                    return View(fl);
+                }
+
                 db.Flowers.Add(fl);
                 db.SaveChanges();
                 return RedirectToAction("ShowFlower", "Flower");
@@ -48,25 +57,41 @@ namespace ShopHoa.Areas.Admin.Controllers
             {
                 throw ex;
             }
-           
+
         }
 
-        public ActionResult EditFlower(string id )
+
+        public ActionResult EditFlower(string id)
         {
-            Flower fl = db.Flowers.Single(d => d.IdFlower == id.Trim());
-            ViewBag.IdFlower = new SelectList(db.Flowers, "IdFlower", "Name");
-            return View(fl);
+            Flower p = db.Flowers.FirstOrDefault(t => t.IdFlower == id);
+            if (p == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(p);
         }
         [HttpPost]
         public ActionResult EditFlower(Flower fl)
         {
-            if(ModelState.IsValid)
+            var tk = db.Flowers.FirstOrDefault(t => t.IdFlower == fl.IdFlower);
+            if (ModelState.IsValid)
             {
-                db.Flowers.Add(fl);
+                tk.IdFlower = fl.IdFlower;
+                tk.IdType = fl.IdType;
+                tk.Price = fl.Price;
+                tk.NameFlower = fl.NameFlower;
+                tk.Note = fl.Note;
+                tk.Status = fl.Status;
+                tk.IdDiscount = fl.IdDiscount;
+                if (!string.IsNullOrEmpty(fl.Image))
+                {
+                    tk.Image = fl.Image;
+                }
                 db.SaveChanges();
-                return RedirectToAction("ShowFlower", "Home");
+                return RedirectToAction("ShowFlower", "Flower");
             }
-            return View(fl);
+            return View(tk);
         }
 
         public ActionResult DeleteFlower(string id)

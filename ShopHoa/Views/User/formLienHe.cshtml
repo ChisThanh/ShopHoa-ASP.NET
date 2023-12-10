@@ -1,0 +1,77 @@
+﻿
+@{
+    ViewBag.Title = "formLienHe";
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+
+<style>
+    #Form_LienHe {
+        width: 600px;
+        margin: 0 auto;
+    }
+
+        #Form_LienHe h4 {
+            text-align: center !important;
+        }
+
+        #Form_LienHe form {
+            padding: 35px;
+            /*box-shadow: rgba(47, 165, 255, 0.6) 0px 10px 20px, rgba(47, 165, 255, 0.7) 0px 6px 6px;*/
+        }
+
+    input.label {
+        width: 530px;
+    }
+
+    .title {
+        text-align: center !important;
+        padding-left: 10px;
+    }
+
+    form h4 {
+        color: red;
+    }
+
+    button[type="submit"] {
+        display: block;
+        margin: 0 auto;
+        width: 180px !important;
+        text-align: center !important;
+
+    }
+</style>
+
+
+<div id="Form_LienHe">
+
+    <div>
+        @using (Html.BeginForm("formLienHe", "User", FormMethod.Post))
+        {
+            <h4>PHẢN HỒI CỦA KHÁCH HÀNG</h4>
+            <div class="mb-3 ">
+                <label for="Name" class="form-label">Họ Và Tên<strong style="color:red">*</strong></label>
+                <input name="Name" type="text" class="form-control label" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3 ">
+                <label for="SDT" class="form-label">Điện Thoại<strong style="color:red">*</strong></label>
+                <input name="SDT" type="text" class="form-control lable" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3 ">
+                <label for="Email" class="form-label">Email address<strong style="color:red">*</strong></label>
+                <input name="Email" type="email" class="form-control lable" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+                <label for="NoiDung" class="form-label">Nhập nội dung<strong style="color:red">*</strong></label>
+                <textarea name="NoiDung" style="width:530px;height:120px;" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+            </div>
+            <button style="background-color:aqua;border-radius:10px" type="submit"><h3 style="padding:10px">Gửi phản hồi</h3></button>
+        }
+
+    </div>
+    <div class="title " style="margin-top: 0px;">
+        <p>
+            Chúng tôi mong muốn lắng nghe ý kiến của quý khách.Vui lòng gửi mọi yêu cầu,
+            thắc mắc theo thông tin bên dưới, chúng tôi sẽ liên lạc với bạn sớm nhất có thể.
+        </p>
+    </div>
+</div>

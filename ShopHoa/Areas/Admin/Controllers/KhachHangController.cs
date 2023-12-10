@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace ShopHoa.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class KhachHangController : Controller
     {
         // GET: Admin/KhachHang
