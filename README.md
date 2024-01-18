@@ -13,7 +13,7 @@ Chức năng cơ bản
 
 - Giỏ hàng
 - Hủy đơn
-- Thông tin tài khoảng
+- Thông tin tài khoản
 - Gửi mail đánh giá
 - Đánh giá sao
 
