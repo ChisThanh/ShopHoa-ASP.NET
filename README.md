@@ -24,6 +24,6 @@ Chức năng cơ bản
 - Thống kê doanh thu
 - Duyệt đơn
 - CRUD đầy đủ các bảng
-- 
+
 ## Database
 - SQL server
