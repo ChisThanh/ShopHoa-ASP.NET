@@ -14,6 +14,8 @@ Chức năng cơ bản
 - Giỏ hàng
 - Hủy đơn
 - Thông tin tài khoản
+- Phân trang
+- Tìm kiếm
 - Gửi mail đánh giá
 - Đánh giá sao
 
@@ -22,3 +24,6 @@ Chức năng cơ bản
 - Thống kê doanh thu
 - Duyệt đơn
 - CRUD đầy đủ các bảng
+- 
+## Database
+- SQL server
